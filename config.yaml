@@ -14,12 +14,12 @@ permalinks:
   post: /:year/:month/:day/:slug/
 menu:
   main:
-    - name: About Me
+    - name: 关于我
       url: /about/
-    - name: GitHub
-      url: https://github.com/rstudio/blogdown
-    - name: Twitter
-      url: https://twitter.com/rstudio
+    - name: 学习
+      url: /study/
+    - name: 生活
+      url: /live/
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
   MathJaxVersion: 2.7.5

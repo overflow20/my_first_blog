@@ -19,7 +19,7 @@ menu:
     - name: 学习
       url: /study/
     - name: 生活
-      url: /live/
+      url: /life/
 params:
   MathJaxCDN: //cdnjs.cloudflare.com/ajax/libs
   MathJaxVersion: 2.7.5

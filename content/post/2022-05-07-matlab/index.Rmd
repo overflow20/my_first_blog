@@ -6,3 +6,17 @@ slug: matlab
 categories: []
 tags: []
 ---
+
+书籍列表(更新中)：
+- Matlab揭秘
+- [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
+
+# 5.7
+
+- 可以通过在命令窗口中输入 who 来刷新内存，
+告诉 MATLAB 显示到目前为止所有变量名称。whos更详细~
+- 输入 format rat，MATLAB 将自动查找最接近结果的比例式。
+
+
+
+

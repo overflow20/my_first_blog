@@ -1,0 +1,43 @@
+---
+title: Python每日随心记
+author: zyy
+date: '2022-05-07'
+slug: python
+categories: []
+tags: []
+---
+
+
+
+<p>书籍列表(更新中)：</p>
+<ul>
+<li><a href="https://www.bookstack.cn/read/pyda-2e-zh/README.md">利用 Python 进行数据分析 · 第 2 版</a>,第3版已于2022年更新，<a href="https://wesmckinney.com/book/">第3版网址</a></li>
+</ul>
+<div id="section" class="section level2">
+<h2>5.7</h2>
+<p>一些行话：</p>
+<ul>
+<li><p>Munge/Munging/Wrangling：数据规整</p></li>
+<li><p>Pseudocode 伪码</p></li>
+<li><p>Syntactic sugar 语法糖</p></li>
+<li><p>Tab可以补全~</p></li>
+<li><p>在变量前后使用问号，可以显示对象的信息</p></li>
+<li><p>jupyter notebook快捷键：</p></li>
+</ul>
+<p><img src="1.jpg" /></p>
+<ul>
+<li>魔术命令是在指令前添加百分号%前缀。例如，可以用 <code>%timeit</code>测量任何Python语句,用 <code>%quickref</code> 或 <code>%magic</code> 学习下所有特殊命令。</li>
+</ul>
+<p><img src="2.jpg" /></p>
+<ul>
+<li>可以用 <code>obj.attribute_name</code> 访问属性和方法</li>
+<li>经常地，你可能不关心对象的类型，只关心对象是否有某些方法或用途。这通常被称为“鸭子类型”😃来自“走起来像鸭子、叫起来像鸭子，那么它就是鸭子”的说法。</li>
+<li>三元表达式 <code>"positive" if x &gt;= 0 else "negative</code></li>
+<li>datetime</li>
+</ul>
+<pre><code>from datetime import datetime, date, time
+dt = datetime(2011, 10, 29, 20, 30, 21)
+dt.strftime(&#39;%m/%d/%Y %H:%M&#39;)#strftime 方法可以将datetime格式化为字符串
+datetime.strptime(&#39;20091031&#39;, &#39;%Y%m%d&#39;)
+#strptime 可以将字符串转换成 datetime 对象。</code></pre>
+</div>

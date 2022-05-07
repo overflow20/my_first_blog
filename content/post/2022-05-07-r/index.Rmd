@@ -1,0 +1,30 @@
+---
+title: R每日随心记
+author: zyy
+date: '2022-05-07'
+slug: r
+categories: []
+tags: []
+---
+
+这三种语言说熟悉也熟悉，但总觉得缺乏一种系统感，那就每天花点时间浏览一些书籍记录一下吧！
+
+书籍列表(更新中)：
+
+- R语言实战(第2版)
+
+## 5.7
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = T,collapse = T,
+                      results = "hide")
+```
+
+```{r}
+help.start()
+help(package = "vcd")
+library(vcd) 
+help(Arthritis) #阅读数据集Arthritis的描述
+Arthritis 
+example(Arthritis)# 运行数据集Arthritis自带的示例
+#q()
+```

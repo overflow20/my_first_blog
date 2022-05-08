@@ -14,6 +14,8 @@ tags: []
 <ul>
 <li>R语言实战(第2版)</li>
 </ul>
+<pre class="r"><code>knitr::opts_chunk$set(echo = T,collapse = T,
+                      results = &quot;hide&quot;)</code></pre>
 <div id="section" class="section level2">
 <h2>5.7</h2>
 <pre class="r"><code>help.start()
@@ -27,4 +29,52 @@ Arthritis
 example(Arthritis)# 运行数据集Arthritis自带的示例</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
 <pre class="r"><code>#q()</code></pre>
+</div>
+<div id="section-1" class="section level2">
+<h2>5.8</h2>
+<pre class="r"><code>#矩阵
+y = matrix(1:20,nrow = 5, ncol = 4)
+y
+cells &lt;- c(1, 26, 24, 68)
+rnames &lt;- c(&quot;R1&quot;, &quot;R2&quot;)
+cnames &lt;- c(&quot;C1&quot;, &quot;C2&quot;)
+mymatrix &lt;- matrix(cells, nrow = 2, ncol = 2, byrow = TRUE, 
+    dimnames = list(rnames, cnames))
+mymatrix
+mymatrix &lt;- matrix(cells, nrow = 2, ncol = 2, byrow = FALSE, 
+    dimnames = list(rnames, cnames))
+mymatrix
+#数组：个创建三维（2×3×4）数值型数组
+dim1 &lt;- c(&quot;A1&quot;, &quot;A2&quot;)
+dim2 &lt;- c(&quot;B1&quot;, &quot;B2&quot;, &quot;B3&quot;)
+dim3 &lt;- c(&quot;C1&quot;, &quot;C2&quot;, &quot;C3&quot;, &quot;C4&quot;)
+z &lt;- array(1:24, c(2, 3, 4), dimnames = list(dim1, dim2, dim3))
+z</code></pre>
+<pre class="r"><code>#创建数据框
+patientID &lt;- c(1, 2, 3, 4)
+age &lt;- c(25, 34, 28, 52)
+diabetes &lt;- c(&quot;Type1&quot;, &quot;Type2&quot;, &quot;Type1&quot;, &quot;Type1&quot;)
+status &lt;- c(&quot;Poor&quot;, &quot;Improved&quot;, &quot;Excellent&quot;, &quot;Poor&quot;)
+patientdata &lt;- data.frame(patientID, age, diabetes, 
+    status)
+patientdata
+patientdata$age
+table(patientdata$diabetes, patientdata$status)#生成糖尿病类型变量diabetes和病情变量status的列联表</code></pre>
+<ul>
+<li>函数attach()可将数据框添加到R的搜索路径中。R在遇到一个变量名以后，将检查搜索路径中的数据框，但是<a href="https://google.github.io/styleguide/Rguide.html">R代码风格说明</a>里说最好不要用噢哈哈哈</li>
+<li><strong>with</strong></li>
+<li>类别（名义型）变量和有序类别（有序型）变量在R中称为因子（factor）</li>
+</ul>
+<pre class="r"><code>patientID &lt;- c(1, 2, 3, 4)
+age &lt;- c(25, 34, 28, 52)
+diabetes &lt;- c(&quot;Type1&quot;, &quot;Type2&quot;, &quot;Type1&quot;, &quot;Type1&quot;)
+status &lt;- c(&quot;Poor&quot;, &quot;Improved&quot;, &quot;Excellent&quot;, &quot;Poor&quot;)
+diabetes &lt;- factor(diabetes)
+status &lt;- factor(status, order = TRUE)
+patientdata &lt;- data.frame(patientID, age, diabetes, status)
+str(patientdata)</code></pre>
+<ul>
+<li>edit() 可以修改数据</li>
+<li></li>
+</ul>
 </div>

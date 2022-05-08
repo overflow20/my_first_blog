@@ -12,12 +12,11 @@ tags: []
 书籍列表(更新中)：
 
 - R语言实战(第2版)
-
-## 5.7
-```{r setup, include=FALSE}
+```{r setup, include=T}
 knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
+## 5.7
 
 ```{r}
 help.start()
@@ -28,3 +27,56 @@ Arthritis
 example(Arthritis)# 运行数据集Arthritis自带的示例
 #q()
 ```
+
+## 5.8
+
+```{r}
+#矩阵
+y = matrix(1:20,nrow = 5, ncol = 4)
+y
+cells <- c(1, 26, 24, 68)
+rnames <- c("R1", "R2")
+cnames <- c("C1", "C2")
+mymatrix <- matrix(cells, nrow = 2, ncol = 2, byrow = TRUE, 
+    dimnames = list(rnames, cnames))
+mymatrix
+mymatrix <- matrix(cells, nrow = 2, ncol = 2, byrow = FALSE, 
+    dimnames = list(rnames, cnames))
+mymatrix
+#数组：个创建三维（2×3×4）数值型数组
+dim1 <- c("A1", "A2")
+dim2 <- c("B1", "B2", "B3")
+dim3 <- c("C1", "C2", "C3", "C4")
+z <- array(1:24, c(2, 3, 4), dimnames = list(dim1, dim2, dim3))
+z
+```
+
+```{r}
+#创建数据框
+patientID <- c(1, 2, 3, 4)
+age <- c(25, 34, 28, 52)
+diabetes <- c("Type1", "Type2", "Type1", "Type1")
+status <- c("Poor", "Improved", "Excellent", "Poor")
+patientdata <- data.frame(patientID, age, diabetes, 
+    status)
+patientdata
+patientdata$age
+table(patientdata$diabetes, patientdata$status)#生成糖尿病类型变量diabetes和病情变量status的列联表
+```
+
+- 函数attach()可将数据框添加到R的搜索路径中。R在遇到一个变量名以后，将检查搜索路径中的数据框，但是[R代码风格说明](https://google.github.io/styleguide/Rguide.html)里说最好不要用噢哈哈哈
+- **with**
+- 类别（名义型）变量和有序类别（有序型）变量在R中称为因子（factor）
+```{r}
+patientID <- c(1, 2, 3, 4)
+age <- c(25, 34, 28, 52)
+diabetes <- c("Type1", "Type2", "Type1", "Type1")
+status <- c("Poor", "Improved", "Excellent", "Poor")
+diabetes <- factor(diabetes)
+status <- factor(status, order = TRUE)
+patientdata <- data.frame(patientID, age, diabetes, status)
+str(patientdata)
+```
+
+- edit() 可以修改数据
+- 

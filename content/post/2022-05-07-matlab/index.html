@@ -20,3 +20,24 @@ tags: []
 <li>输入 format rat，MATLAB 将自动查找最接近结果的比例式。</li>
 </ul>
 </div>
+<div id="section-1" class="section level1">
+<h1>5.8</h1>
+<ul>
+<li>等差元素的向量 <code>x = [0:2:10]</code></li>
+<li>而 <code>linspace(a, b, n)</code>创建了 a、b 之间含有 n 个等差元素的向量</li>
+<li>用<code>logspace(a, b, n)</code>创建 n 个对数值相隔相同的行向量,这创建了 <span class="math inline">\(10^a\)</span>和 <span class="math inline">\(10^b\)</span> 之间 n 个对数值等差的向量</li>
+<li>命令<code>length</code> 返回向量中包含元素的个数 👊为什么每个软件都不一样！剪秋，本宫的头好痛！！</li>
+<li>a、b 两向量的点乘可以使用 <code>dot(a, b)</code>命令</li>
+<li>向量 v 的第 i 个元素可以用 <code>v(i)</code>来引用，是括号嗷👊</li>
+<li>以用 <code>A(4:6)</code>选出第 4 到第 6 个元素组成一个新的、含有 3 个元素的向量👊</li>
+<li>如果矩阵包含有复数元素，那么转置操作会自动计算复数的共轭值,如果要转置复数矩阵的而不计算它的共轭值，那么我们使用<code>.'</code></li>
+<li>矩阵相乘就不用<code>.</code>了噢</li>
+<li>要在 MATLAB 中创建空数组，只需在方括号[]里留空即可。它可以用来删除矩阵的行或列</li>
+<li><code>det(A)</code>算行列式</li>
+<li><code>rank(A)</code>算矩阵秩</li>
+<li><code>inv(A)</code>算矩阵逆</li>
+<li>无限解怎么办呢：用伪逆矩阵</li>
+<li>MATLAB 中的<code>rref(A)</code>函数使用 Gauss-Jordan 消元法产生矩阵 A 降行后的梯形形式</li>
+<li>MATLAB 可以快速地对矩阵进行 LU、QR 或 SVD 分解。LU分解：<code>[L, U] = lu(A)</code>👍</li>
+</ul>
+</div>

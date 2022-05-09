@@ -14,6 +14,40 @@ tags: []
 <li><a href="https://www.bookstack.cn/read/pyda-2e-zh/README.md">利用 Python 进行数据分析 · 第 2 版</a>,第3版已于2022年更新，<a href="https://wesmckinney.com/book/">第3版网址</a></li>
 </ul>
 <div id="section" class="section level2">
+<h2>5.9</h2>
+<ul>
+<li>字典的<code>setdefault</code></li>
+<li><code>collections</code>模块有一个很有用的类,<code>defaultdict</code></li>
+<li><strong>可哈希性</strong>:字典的值可以是任意Python对象，而键通常是不可变的标量类型（整数、浮点型、字符串）或元
+组（元组中的对象必须是不可变的）</li>
+<li>集合使用方法：
+<img src="3.jpg" /></li>
+<li>内置的<code>map</code>函数，它用于在一组数据上应用一个函数</li>
+<li>能以一种一致的方式对序列进行迭代（比如列表中的对象或文件中的行）是Python的一个重要特点。<strong>迭代器</strong>是一种特殊对象，它可以在诸如for循环之类的上下文中向Python解释器输送对象。</li>
+<li>生成器（generator）是构造新的可迭代对象的一种简单方式。一般的函数执行之后只会返回单个
+值，而生成器则是以延迟的方式返回一个值序列，即每返回一个值之后暂停，直到下一个值被请求时再继续。要创建一个生成器，只需将函数中的return替换为yeild即可。
+groupby可以接受任何序列和一个函数。它根据函数的返回值对序列中的连续元素进行分组。</li>
+</ul>
+<pre><code>import itertools
+first_letter = lambda x: x[0]
+names = [&#39;Alan&#39;, &#39;Adam&#39;, &#39;Wes&#39;, &#39;Will&#39;, &#39;Albert&#39;, &#39;Steven&#39;]
+for letter, names in itertools.groupby(names, first_letter):
+  print(letter, list(names)) # names is a generator</code></pre>
+<p>到78页了，这个<a href="https://www.runoob.com/python3/python3-iterator-generator.html">生成器迭代器</a>有搞头
+<a href="https://zhuanlan.zhihu.com/p/341439647">这个也不错</a>
+## 5.8
+啊我刚看完R的数据类型头大了哈哈哈✋</p>
+<ul>
+<li>Python最近新增了更多高级的元组拆分功能，允许从元组的开头“摘取”几个元素。它使用了特殊的
+语法 <code>*_</code></li>
+<li>用<code>extend</code>方法要比<code>+</code>串联快</li>
+<li><code>bisect</code>模块，<code>bisect.bisect</code> 可以找到插入值后仍保证排序的位置， <code>bisect.insort</code> 是向这个位置插入值</li>
+<li><code>enumerate</code>😎</li>
+<li><code>zip</code> 可以将多个列表、元组或其它序列成对组合成一个元组列表：</li>
+</ul>
+<p>今天看到57页！</p>
+</div>
+<div id="section-1" class="section level2">
 <h2>5.7</h2>
 <p>一些行话：</p>
 <ul>
@@ -40,17 +74,4 @@ dt = datetime(2011, 10, 29, 20, 30, 21)
 dt.strftime(&#39;%m/%d/%Y %H:%M&#39;)#strftime 方法可以将datetime格式化为字符串
 datetime.strptime(&#39;20091031&#39;, &#39;%Y%m%d&#39;)
 #strptime 可以将字符串转换成 datetime 对象。</code></pre>
-</div>
-<div id="section-1" class="section level2">
-<h2>5.8</h2>
-<p>啊我刚看完R的数据类型头大了哈哈哈✋</p>
-<ul>
-<li>Python最近新增了更多高级的元组拆分功能，允许从元组的开头“摘取”几个元素。它使用了特殊的
-语法 <code>*_</code></li>
-<li>用<code>extend</code>方法要比<code>+</code>串联快</li>
-<li><code>bisect</code>模块，<code>bisect.bisect</code> 可以找到插入值后仍保证排序的位置， <code>bisect.insort</code> 是向这个位置插入值</li>
-<li><code>enumerate</code>😎</li>
-<li><code>zip</code> 可以将多个列表、元组或其它序列成对组合成一个元组列表：</li>
-</ul>
-<p>今天看到57页！</p>
 </div>

@@ -8,16 +8,22 @@ tags: []
 ---
 
 书籍列表(更新中)：
+
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
-# 5.7
+## 5.9
+- `fplot`不错！
+- `loglog(X,Y)` 在 x 轴和 y 轴上应用以 10 为底的对数刻度来绘制 x 和 y 坐标
+- 画三维图
+```
+[x,y] = meshgrid(-2*pi:0.1:2*pi); 
+z = cos(x).*sin(y); 
+mesh(x,y,z),xlabel('x'),ylabel('y'),zlabel('z')
+```
+😭😭😭怎么感觉matlab画图比r方便好多，肯定是我r学艺不精！！
 
-- 可以通过在命令窗口中输入 who 来刷新内存，
-告诉 MATLAB 显示到目前为止所有变量名称。whos更详细~
-- 输入 format rat，MATLAB 将自动查找最接近结果的比例式。
-
-# 5.8
+## 5.8
 - 等差元素的向量 `x = [0:2:10]`
 - 而 `linspace(a, b, n)`创建了 a、b 之间含有 n 个等差元素的向量
 - 用`logspace(a, b, n)`创建 n 个对数值相隔相同的行向量,这创建了 $10^a$和 $10^b$ 之间 n 个对数值等差的向量
@@ -34,6 +40,12 @@ tags: []
 - 无限解怎么办呢：用伪逆矩阵
 - MATLAB 中的`rref(A)`函数使用 Gauss-Jordan 消元法产生矩阵 A 降行后的梯形形式
 - MATLAB 可以快速地对矩阵进行 LU、QR 或 SVD 分解。LU分解：`[L, U] = lu(A)`👍
+
+## 5.7
+- 可以通过在命令窗口中输入 who 来刷新内存，
+告诉 MATLAB 显示到目前为止所有变量名称。whos更详细~
+- 输入 format rat，MATLAB 将自动查找最接近结果的比例式。
+
 
 
 

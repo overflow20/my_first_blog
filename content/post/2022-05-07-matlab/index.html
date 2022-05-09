@@ -9,19 +9,25 @@ tags: []
 
 
 
-<p>书籍列表(更新中)：
-- Matlab揭秘
-- <a href="https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html">官方文档！</a></p>
-<div id="section" class="section level1">
-<h1>5.7</h1>
+<p>书籍列表(更新中)：</p>
 <ul>
-<li>可以通过在命令窗口中输入 who 来刷新内存，
-告诉 MATLAB 显示到目前为止所有变量名称。whos更详细~</li>
-<li>输入 format rat，MATLAB 将自动查找最接近结果的比例式。</li>
+<li>Matlab揭秘</li>
+<li><a href="https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html">官方文档！</a></li>
 </ul>
+<div id="section" class="section level2">
+<h2>5.9</h2>
+<ul>
+<li><code>fplot</code>不错！</li>
+<li><code>loglog(X,Y)</code> 在 x 轴和 y 轴上应用以 10 为底的对数刻度来绘制 x 和 y 坐标</li>
+<li>画三维图</li>
+</ul>
+<pre><code>[x,y] = meshgrid(-2*pi:0.1:2*pi); 
+z = cos(x).*sin(y); 
+mesh(x,y,z),xlabel(&#39;x&#39;),ylabel(&#39;y&#39;),zlabel(&#39;z&#39;)</code></pre>
+<p>😭😭😭怎么感觉matlab画图比r方便好多，肯定是我r学艺不精！！</p>
 </div>
-<div id="section-1" class="section level1">
-<h1>5.8</h1>
+<div id="section-1" class="section level2">
+<h2>5.8</h2>
 <ul>
 <li>等差元素的向量 <code>x = [0:2:10]</code></li>
 <li>而 <code>linspace(a, b, n)</code>创建了 a、b 之间含有 n 个等差元素的向量</li>
@@ -39,5 +45,13 @@ tags: []
 <li>无限解怎么办呢：用伪逆矩阵</li>
 <li>MATLAB 中的<code>rref(A)</code>函数使用 Gauss-Jordan 消元法产生矩阵 A 降行后的梯形形式</li>
 <li>MATLAB 可以快速地对矩阵进行 LU、QR 或 SVD 分解。LU分解：<code>[L, U] = lu(A)</code>👍</li>
+</ul>
+</div>
+<div id="section-2" class="section level2">
+<h2>5.7</h2>
+<ul>
+<li>可以通过在命令窗口中输入 who 来刷新内存，
+告诉 MATLAB 显示到目前为止所有变量名称。whos更详细~</li>
+<li>输入 format rat，MATLAB 将自动查找最接近结果的比例式。</li>
 </ul>
 </div>

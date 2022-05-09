@@ -17,18 +17,19 @@ tags: []
 <pre class="r"><code>knitr::opts_chunk$set(echo = T,collapse = T,
                       results = &quot;hide&quot;)</code></pre>
 <div id="section" class="section level2">
-<h2>5.7</h2>
-<pre class="r"><code>help.start()
-## starting httpd help server ... done
-help(package = &quot;vcd&quot;)
-library(vcd) 
-## Warning: 程辑包&#39;vcd&#39;是用R版本4.0.5 来建造的
-## 载入需要的程辑包：grid
-help(Arthritis) #阅读数据集Arthritis的描述
-Arthritis 
-example(Arthritis)# 运行数据集Arthritis自带的示例</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
-<pre class="r"><code>#q()</code></pre>
+<h2>5.9</h2>
+<pre class="r"><code>attach(mtcars)
+plot(wt, mpg)
+abline(lm(mpg ~ wt))
+title(&quot;Regression of MPG on Weight&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>detach(mtcars)</code></pre>
+<ul>
+<li>可用<code>par(optionname=value,optionname=name,...)</code>修改图形参数，也可用高级绘图函数直接提供的optionname=value的键值对</li>
+<li>函数<code>colors()</code>可以返回所有可用颜色的名称</li>
+<li>函数<code>plotmath()</code>可以为图形主体或边界上的标题、坐标轴名称或文本标注添加数学符号</li>
+<li><code>layout()</code>👍</li>
+</ul>
 </div>
 <div id="section-1" class="section level2">
 <h2>5.8</h2>
@@ -75,6 +76,19 @@ patientdata &lt;- data.frame(patientID, age, diabetes, status)
 str(patientdata)</code></pre>
 <ul>
 <li>edit() 可以修改数据</li>
-<li></li>
 </ul>
+</div>
+<div id="section-2" class="section level2">
+<h2>5.7</h2>
+<pre class="r"><code>help.start()
+## starting httpd help server ... done
+help(package = &quot;vcd&quot;)
+library(vcd) 
+## Warning: 程辑包&#39;vcd&#39;是用R版本4.0.5 来建造的
+## 载入需要的程辑包：grid
+help(Arthritis) #阅读数据集Arthritis的描述
+Arthritis 
+example(Arthritis)# 运行数据集Arthritis自带的示例</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<pre class="r"><code>#q()</code></pre>
 </div>

@@ -17,12 +17,33 @@ tags: []
 <pre class="r"><code>knitr::opts_chunk$set(echo = T,collapse = T,
                       results = &quot;hide&quot;)</code></pre>
 <div id="section" class="section level2">
+<h2>5.10</h2>
+<pre class="r"><code>mydata &lt;- data.frame(x1 = c(2, 2, 6, 4), x2 = c(3, 4, 2, 8))
+mydata$sumx &lt;- mydata$x1 + mydata$x2
+mydata$meanx &lt;- (mydata$x1 + mydata$x2)/2
+attach(mydata)
+mydata$sumx &lt;- x1 + x2
+mydata$meanx &lt;- (x1 + x2)/2
+detach(mydata)
+mydata &lt;- transform(mydata, sumx = x1 + x2, meanx = (x1 + x2)/2)</code></pre>
+<ul>
+<li>plyr包中有一个<code>rename()</code>函数，可用于修改变量名</li>
+</ul>
+<pre class="r"><code>y &lt;- c(1, 2, 3, NA) 
+print(is.na(y))
+x &lt;- c(1, 2, NA, 3) 
+print(sum(x, na.rm=TRUE))</code></pre>
+<ul>
+<li><code>na.omit()</code>可以删除所有含有缺失数据的行</li>
+</ul>
+</div>
+<div id="section-1" class="section level2">
 <h2>5.9</h2>
 <pre class="r"><code>attach(mtcars)
 plot(wt, mpg)
 abline(lm(mpg ~ wt))
 title(&quot;Regression of MPG on Weight&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
 <pre class="r"><code>detach(mtcars)</code></pre>
 <ul>
 <li>可用<code>par(optionname=value,optionname=name,...)</code>修改图形参数，也可用高级绘图函数直接提供的optionname=value的键值对</li>
@@ -31,7 +52,7 @@ title(&quot;Regression of MPG on Weight&quot;)</code></pre>
 <li><code>layout()</code>👍</li>
 </ul>
 </div>
-<div id="section-1" class="section level2">
+<div id="section-2" class="section level2">
 <h2>5.8</h2>
 <pre class="r"><code>#矩阵
 y = matrix(1:20,nrow = 5, ncol = 4)
@@ -78,7 +99,7 @@ str(patientdata)</code></pre>
 <li>edit() 可以修改数据</li>
 </ul>
 </div>
-<div id="section-2" class="section level2">
+<div id="section-3" class="section level2">
 <h2>5.7</h2>
 <pre class="r"><code>help.start()
 ## starting httpd help server ... done
@@ -89,6 +110,6 @@ library(vcd)
 help(Arthritis) #阅读数据集Arthritis的描述
 Arthritis 
 example(Arthritis)# 运行数据集Arthritis自带的示例</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
 <pre class="r"><code>#q()</code></pre>
 </div>

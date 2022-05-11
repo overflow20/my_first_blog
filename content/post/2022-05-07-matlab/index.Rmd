@@ -12,6 +12,25 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.11
+- 解方程
+```
+syms x
+x = solve(x+3==0)
+
+syms x y z
+eq1 = x^2 + sin(y) - z == 100;
+eq2 = x - y + z == 5;
+eq3 = x * z + cos(y) == 6 * z;
+[x, y, z] = solve(eq1, eq2, eq3, x, y, z);
+
+d = 'x^2 - 6*x - 12';
+ezplot(d,[-7,13]);
+%级数
+s = taylor(sin(x),'order',20);
+ezplot(s)
+```
+
 ## 5.10
 - 救命Matlab画图怎么这么方便？？
 ```

@@ -18,6 +18,45 @@ knitr::opts_chunk$set(echo = T,collapse = T,
 ```
 
 
+## 5.11
+答辩让我好疲惫。。
+
+- 日期
+```{r}
+mydates <- as.Date(c("2007-06-22","2004-02-13")) 
+today <- Sys.Date() 
+format(today, format="%B %d %Y") 
+dob <- as.Date("2000-01-02")
+difftime(today, dob, units="weeks") 
+#strDates <- as.character(dates)将日期转为字符
+```
+
+![](1.jpg) 
+
+```{r}
+a <- c(1, 2, 3)
+a
+is.numeric(a)
+is.vector(a)
+a <- as.character(a)
+a
+is.numeric(a)
+is.vector(a)
+is.character(a)
+```
+
+- 使用`order()`函数对一个数据框进行排序。默认的排序顺序是升序。在排序变量的前边加一个减号即可得到降序的排序结果
+- 横向合并两个数据框（数据集），使用`merge()`函数，`rbind(),cbind()`
+- `subset()`函数大概是选择变量和观测最简单的方法
+- `sample()`函数能够让你从数据集中（有放回或无放回地）抽取大小为n的一个随机样本
+```{r}
+library(sqldf)
+newdf <- sqldf("select * from mtcars where carb=1 order by mpg", 
+    row.names = TRUE)
+newdf <- sqldf("select avg(mpg) as avg_mpg, avg(disp) as avg_disp,
+    gear from mtcars where cyl in (4, 6) group by gear")
+```
+
 ## 5.10
 ```{r}
 mydata <- data.frame(x1 = c(2, 2, 6, 4), x2 = c(3, 4, 2, 8))

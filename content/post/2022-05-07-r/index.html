@@ -17,6 +17,46 @@ tags: []
 <pre class="r"><code>knitr::opts_chunk$set(echo = T,collapse = T,
                       results = &quot;hide&quot;)</code></pre>
 <div id="section" class="section level2">
+<h2>5.11</h2>
+<p>答辩让我好疲惫。。</p>
+<ul>
+<li>日期</li>
+</ul>
+<pre class="r"><code>mydates &lt;- as.Date(c(&quot;2007-06-22&quot;,&quot;2004-02-13&quot;)) 
+today &lt;- Sys.Date() 
+format(today, format=&quot;%B %d %Y&quot;) 
+dob &lt;- as.Date(&quot;2000-01-02&quot;)
+difftime(today, dob, units=&quot;weeks&quot;) 
+#strDates &lt;- as.character(dates)将日期转为字符</code></pre>
+<p><img src="1.jpg" /></p>
+<pre class="r"><code>a &lt;- c(1, 2, 3)
+a
+is.numeric(a)
+is.vector(a)
+a &lt;- as.character(a)
+a
+is.numeric(a)
+is.vector(a)
+is.character(a)</code></pre>
+<ul>
+<li>使用<code>order()</code>函数对一个数据框进行排序。默认的排序顺序是升序。在排序变量的前边加一个减号即可得到降序的排序结果</li>
+<li>横向合并两个数据框（数据集），使用<code>merge()</code>函数，<code>rbind(),cbind()</code></li>
+<li><code>subset()</code>函数大概是选择变量和观测最简单的方法</li>
+<li><code>sample()</code>函数能够让你从数据集中（有放回或无放回地）抽取大小为n的一个随机样本</li>
+</ul>
+<pre class="r"><code>library(sqldf)
+## Warning: 程辑包&#39;sqldf&#39;是用R版本4.0.5 来建造的
+## 载入需要的程辑包：gsubfn
+## Warning: 程辑包&#39;gsubfn&#39;是用R版本4.0.5 来建造的
+## 载入需要的程辑包：proto
+## Warning: 程辑包&#39;proto&#39;是用R版本4.0.5 来建造的
+## 载入需要的程辑包：RSQLite
+newdf &lt;- sqldf(&quot;select * from mtcars where carb=1 order by mpg&quot;, 
+    row.names = TRUE)
+newdf &lt;- sqldf(&quot;select avg(mpg) as avg_mpg, avg(disp) as avg_disp,
+    gear from mtcars where cyl in (4, 6) group by gear&quot;)</code></pre>
+</div>
+<div id="section-1" class="section level2">
 <h2>5.10</h2>
 <pre class="r"><code>mydata &lt;- data.frame(x1 = c(2, 2, 6, 4), x2 = c(3, 4, 2, 8))
 mydata$sumx &lt;- mydata$x1 + mydata$x2
@@ -37,13 +77,13 @@ print(sum(x, na.rm=TRUE))</code></pre>
 <li><code>na.omit()</code>可以删除所有含有缺失数据的行</li>
 </ul>
 </div>
-<div id="section-1" class="section level2">
+<div id="section-2" class="section level2">
 <h2>5.9</h2>
 <pre class="r"><code>attach(mtcars)
 plot(wt, mpg)
 abline(lm(mpg ~ wt))
 title(&quot;Regression of MPG on Weight&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code>detach(mtcars)</code></pre>
 <ul>
 <li>可用<code>par(optionname=value,optionname=name,...)</code>修改图形参数，也可用高级绘图函数直接提供的optionname=value的键值对</li>
@@ -52,7 +92,7 @@ title(&quot;Regression of MPG on Weight&quot;)</code></pre>
 <li><code>layout()</code>👍</li>
 </ul>
 </div>
-<div id="section-2" class="section level2">
+<div id="section-3" class="section level2">
 <h2>5.8</h2>
 <pre class="r"><code>#矩阵
 y = matrix(1:20,nrow = 5, ncol = 4)
@@ -99,7 +139,7 @@ str(patientdata)</code></pre>
 <li>edit() 可以修改数据</li>
 </ul>
 </div>
-<div id="section-3" class="section level2">
+<div id="section-4" class="section level2">
 <h2>5.7</h2>
 <pre class="r"><code>help.start()
 ## starting httpd help server ... done
@@ -110,6 +150,6 @@ library(vcd)
 help(Arthritis) #阅读数据集Arthritis的描述
 Arthritis 
 example(Arthritis)# 运行数据集Arthritis自带的示例</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
 <pre class="r"><code>#q()</code></pre>
 </div>

@@ -18,6 +18,37 @@ knitr::opts_chunk$set(echo = T,collapse = T,
 ```
 
 
+## 5.12
+昨晚是被蚊子毁掉的睡眠！
+```{r}
+x <- c(1, 2, 3, 4, 5, 6, 7, 8)
+mean(x)
+sd(x)
+```
+![](2.jpg)
+
+```{r}
+# normal distribution
+library(MASS)
+options(digits=3)
+set.seed(1234)
+mean <- c(230.7, 146.7, 3.6)           
+sigma <- matrix( c(15360.8, 6721.2, -47.1,                           6721.2, 4700.9, -16.5,
+            -47.1,  -16.5,   0.3), nrow=3, ncol=3)
+mydata <- mvrnorm(500, mean, sigma)             
+mydata <- as.data.frame(mydata)                   
+names(mydata) <- c("y", "x1", "x2")               
+dim(mydata)
+head(mydata, n=10)   
+```
+
+- 字符串处理函数
+- 其他有用函数
+![](4.jpg)
+- R中提供了一个`apply()`函数，可将一个任意函数“应用”到矩阵、数组、数据框的任何维
+度上。`apply()`函数的使用格式为：
+`apply(x, MARGIN, FUN, ...)`
+
 ## 5.11
 答辩让我好疲惫。。
 

@@ -17,6 +17,35 @@ tags: []
 <pre class="r"><code>knitr::opts_chunk$set(echo = T,collapse = T,
                       results = &quot;hide&quot;)</code></pre>
 <div id="section" class="section level2">
+<h2>5.12</h2>
+<p>昨晚是被蚊子毁掉的睡眠！</p>
+<pre class="r"><code>x &lt;- c(1, 2, 3, 4, 5, 6, 7, 8)
+mean(x)
+sd(x)</code></pre>
+<p><img src="2.jpg" /></p>
+<pre class="r"><code># normal distribution
+library(MASS)
+## Warning: 程辑包&#39;MASS&#39;是用R版本4.0.5 来建造的
+options(digits=3)
+set.seed(1234)
+mean &lt;- c(230.7, 146.7, 3.6)           
+sigma &lt;- matrix( c(15360.8, 6721.2, -47.1,                           6721.2, 4700.9, -16.5,
+            -47.1,  -16.5,   0.3), nrow=3, ncol=3)
+mydata &lt;- mvrnorm(500, mean, sigma)             
+mydata &lt;- as.data.frame(mydata)                   
+names(mydata) &lt;- c(&quot;y&quot;, &quot;x1&quot;, &quot;x2&quot;)               
+dim(mydata)
+head(mydata, n=10)   </code></pre>
+<ul>
+<li>字符串处理函数</li>
+<li>其他有用函数
+<img src="4.jpg" /></li>
+<li>R中提供了一个<code>apply()</code>函数，可将一个任意函数“应用”到矩阵、数组、数据框的任何维
+度上。<code>apply()</code>函数的使用格式为：
+<code>apply(x, MARGIN, FUN, ...)</code></li>
+</ul>
+</div>
+<div id="section-1" class="section level2">
 <h2>5.11</h2>
 <p>答辩让我好疲惫。。</p>
 <ul>
@@ -56,7 +85,7 @@ newdf &lt;- sqldf(&quot;select * from mtcars where carb=1 order by mpg&quot;,
 newdf &lt;- sqldf(&quot;select avg(mpg) as avg_mpg, avg(disp) as avg_disp,
     gear from mtcars where cyl in (4, 6) group by gear&quot;)</code></pre>
 </div>
-<div id="section-1" class="section level2">
+<div id="section-2" class="section level2">
 <h2>5.10</h2>
 <pre class="r"><code>mydata &lt;- data.frame(x1 = c(2, 2, 6, 4), x2 = c(3, 4, 2, 8))
 mydata$sumx &lt;- mydata$x1 + mydata$x2
@@ -77,13 +106,13 @@ print(sum(x, na.rm=TRUE))</code></pre>
 <li><code>na.omit()</code>可以删除所有含有缺失数据的行</li>
 </ul>
 </div>
-<div id="section-2" class="section level2">
+<div id="section-3" class="section level2">
 <h2>5.9</h2>
 <pre class="r"><code>attach(mtcars)
 plot(wt, mpg)
 abline(lm(mpg ~ wt))
 title(&quot;Regression of MPG on Weight&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="r"><code>detach(mtcars)</code></pre>
 <ul>
 <li>可用<code>par(optionname=value,optionname=name,...)</code>修改图形参数，也可用高级绘图函数直接提供的optionname=value的键值对</li>
@@ -92,7 +121,7 @@ title(&quot;Regression of MPG on Weight&quot;)</code></pre>
 <li><code>layout()</code>👍</li>
 </ul>
 </div>
-<div id="section-3" class="section level2">
+<div id="section-4" class="section level2">
 <h2>5.8</h2>
 <pre class="r"><code>#矩阵
 y = matrix(1:20,nrow = 5, ncol = 4)
@@ -139,7 +168,7 @@ str(patientdata)</code></pre>
 <li>edit() 可以修改数据</li>
 </ul>
 </div>
-<div id="section-4" class="section level2">
+<div id="section-5" class="section level2">
 <h2>5.7</h2>
 <pre class="r"><code>help.start()
 ## starting httpd help server ... done
@@ -150,6 +179,6 @@ library(vcd)
 help(Arthritis) #阅读数据集Arthritis的描述
 Arthritis 
 example(Arthritis)# 运行数据集Arthritis自带的示例</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-2.png" width="672" /></p>
 <pre class="r"><code>#q()</code></pre>
 </div>

@@ -11,6 +11,29 @@ tags: []
 
 - [利用 Python 进行数据分析 · 第 2 版](https://www.bookstack.cn/read/pyda-2e-zh/README.md),第3版已于2022年更新，[第3版网址](https://wesmckinney.com/book/)
 
+## 5.12
+```
+arr = np.random.randn(7) * 5
+remainder, whole_part = np.modf(arr)#它会返回浮点数数组的小数和整数部分
+```
+```
+points = np.arange(-5, 5, 0.01) 
+xs, ys = np.meshgrid(points, points)
+z = np.sqrt(xs ** 2 + ys ** 2)
+import matplotlib.pyplot as plt
+plt.imshow(z, cmap=plt.cm.gray); plt.colorbar()
+plt.title("Image plot of $\sqrt{x^2 + y^2}$ for a grid of values")
+```
+- 条件表达
+
+```
+arr = np.random.randn(4, 4)
+np.where(arr > 0, 2, arr) # set only positive values to 2
+```
+![](4.jpg)
+
+![](5.jpg)
+
 ## 5.11
 - 花式索引(Fancy indexing) 是一个NumPy术语，它指的是利用整数数组进行索引。花式索引跟切片不一样，它总是将数据复制到新数组中。
 - 转置是重塑的一种特殊形式，它返回的是源数据的视图（不会进行任何复制操作）。数组不仅有`transpose`方法，还有一个特殊的T属性:

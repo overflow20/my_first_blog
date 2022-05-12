@@ -12,6 +12,13 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.12 
+- 求极限$\lim\limits_{x \to a}f(x)$用` limit(f,a)` `inf`表示极限，`a = limit(f,x,3,'left')`表示左右极限
+- 求导数`diff(f,n)`
+- `pretty(f)`让它pretty哈哈哈
+- `dsolve` 命令求解符号微分方程
+
+
 ## 5.11
 - 解方程
 ```

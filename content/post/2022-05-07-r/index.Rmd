@@ -17,6 +17,80 @@ knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
 
+## 5.13
+睡得好是真的很重要呀
+```{r}
+options(digits=2)#)限定了输出小数点后数字位数
+Student <- c("John Davis", "Angela Williams", 
+    "Bullwinkle Moose", "David Jones", 
+    "Janice Markhammer", "Cheryl Cushing",
+    "Reuven Ytzrhak", "Greg Knox", "Joel England",
+    "Mary Rayburn")
+Math <- c(502, 600, 412, 358, 495, 512, 410, 625, 573, 522)
+Science <- c(95, 99, 80, 82, 75, 85, 80, 95, 89, 86)
+English <- c(25, 22, 18, 15, 20, 28, 15, 30, 27, 18)
+roster <- data.frame(Student, Math, Science, English,stringsAsFactors=FALSE)
+    
+z <- scale(roster[,2:4]) #将变量进行标准化
+
+score <- apply(z, 1, mean)                     
+roster <- cbind(roster, score)
+#通过函数mean()来计算各行的均值以获得综合得分，并使用函数cbind()将其添加到花名册中 
+y <- quantile(score, c(.8,.6,.4,.2)) #函数quantile()给出了学生综合得分的百分位数                                  
+roster$grade[score >= y[1]] <- "A"           
+roster$grade[score < y[1] & score >= y[2]] <- "B"
+roster$grade[score < y[2] & score >= y[3]] <- "C"
+roster$grade[score < y[3] & score >= y[4]] <- "D"
+roster$grade[score < y[4]] <- "F"
+
+name <- strsplit((roster$Student), " ") #使用函数strsplit()以空格为界把学生姓名拆分为姓氏和名字           
+#你可以使用函数sapply()提取列表中每个成分的第一个元素，放入一个储存名字的向量Firstname，并提取每个成分的第二个元素，放入一个储存姓氏的向量Lastname。"["是一个可以提取某个对象的一部分的函数——在这里它是用来提取列表name各成分中的第一个或第二个元素的。
+lastname <- sapply(name, "[", 2)
+firstname <- sapply(name, "[", 1)
+
+roster <- cbind(firstname,lastname, roster[,-1])
+roster <- roster[order(lastname,firstname),]
+
+roster
+```
+
+```{r}
+# for
+for (i in 1:10) 
+    print(i)
+# while
+i <- 10 
+while (i > 0) {
+    print(i)
+    i <- i - 1} 
+```
+-  if
+    - `if (cond) statement1 else statement2`
+    - `ifelse(cond, statement1, statement2)`
+- switch `switch(expr, ...)`
+```{r}
+mydate <- function(type="long") {
+    switch(type,
+    long =  format(Sys.time(), "%A %B %d %Y"), 
+    short = format(Sys.time(), "%m-%d-%y"),
+    cat(type, "is not a recognized type\n"))
+}
+mydate("long")
+mydate("short")
+mydate()
+mydate("medium")
+```
+- 函数
+```
+myfunction <- function(arg1, arg2, ... ){ 
+ statements 
+ return(object) 
+} 
+```
+![](5.jpg)
+
+- 包reshape2 `数melt()和dcast()`
+
 
 ## 5.12
 昨晚是被蚊子毁掉的睡眠！

@@ -12,6 +12,18 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.13
+- ode的数值解
+```
+%eq1.m:
+function ydot = eq1(t,y) 
+ydot = cos(t); 
+end
+[t,y] = ode23('eq2',[0 2*pi],2);
+f = 2 + sin(t);
+plot(t,y,'o',t,f),xlabel('t'),ylabel('y(t)'),axis([0 2*pi 0 4]) 
+```
+
 ## 5.12 
 - 求极限$\lim\limits_{x \to a}f(x)$用` limit(f,a)` `inf`表示极限，`a = limit(f,x,3,'left')`表示左右极限
 - 求导数`diff(f,n)`
@@ -41,12 +53,12 @@ ezplot(s)
 ## 5.10
 - 救命Matlab画图怎么这么方便？？
 ```
- x = [54.5,64.5,74.5,84.5,94.5];
- garcia= [0; 3; 18; 13; 10];... 
+x = [54.5,64.5,74.5,84.5,94.5];
+garcia= [0; 3; 18; 13; 10];... 
 simpson= [3; 5; 20; 10; 5];... 
 smith= [1; 2; 15; 17; 8]; 
- y = [garcia simpson smith]; 
- bar(x,y),xlabel('考试分数'),ylabel('学生人数'),legend('加西亚','辛普森','史密斯')
+y = [garcia simpson smith]; 
+bar(x,y),xlabel('考试分数'),ylabel('学生人数'),legend('加西亚','辛普森','史密斯')
 ```
 - 不等于`~=`
 - for循环语法：

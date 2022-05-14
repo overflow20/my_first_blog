@@ -11,6 +11,40 @@ tags: []
 
 - [利用 Python 进行数据分析 · 第 2 版](https://www.bookstack.cn/read/pyda-2e-zh/README.md),第3版已于2022年更新，[第3版网址](https://wesmckinney.com/book/)
 
+## 5.14
+今日有了新想法💪💪💪
+
+- Series
+```
+obj = pd.Series([4, 7, -5, 3], index=['d', 'b', 'a', 'c'])
+# 它会根据运算的索引标签自动对齐数据
+obj.name = 'population'
+obj.index.name = "state"
+```
+- DataFrame
+```
+data = {'state': ['Ohio', 'Ohio', 'Ohio', 'Nevada', 'Nevada', 'Nevada'],
+'year': [2000, 2001, 2002, 2001, 2002, 2003],
+'pop': [1.5, 1.7, 3.6, 2.4, 2.9, 3.2]}
+frame = pd.DataFrame(data)
+
+pop = {'Nevada': {2001: 2.4, 2002: 2.9},'Ohio': {2000: 1.5, 2001: 1.7, 2002: 3.6}}
+frame = pd.DataFrame(pop)#外层字典的键作为列，内层键则作为行索引：
+frame.T #转置
+frame3.values
+```
+  - Index对象是不可变的，因此用户不能对其进行修改
+- 重新索引`obj2 = obj.reindex(['a', 'b', 'c', 'd', 'e'])`,对与dataframe来说列可以用`columns`关键字重新索引
+- `drop`丢弃
+- 索引 `loc`（标签）`iloc`（整数）
+- 默认情况下，DataFrame和Series之间的算术运算会将Series的索引匹配到DataFrame的列，然后
+沿着行一直向下广播
+-  `frame.apply(f, axis='columns')` `applymap`与`map`
+- 排序`frame.sort_index(axis=1, ascending=False, by=)` rank?
+
+
+
+
 ## 5.13
 - `np.save(),np.load()`
 - `x.dot(y)`等价于`np.dot(x, y)`

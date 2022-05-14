@@ -17,6 +17,54 @@ tags: []
 <pre class="r"><code>knitr::opts_chunk$set(echo = T,collapse = T,
                       results = &quot;hide&quot;)</code></pre>
 <div id="section" class="section level2">
+<h2>5.14</h2>
+<p>吃的太饱容易犯困😵</p>
+<ul>
+<li>条形图</li>
+</ul>
+<pre class="r"><code># Load vcd package
+library(vcd)
+## Warning: 程辑包&#39;vcd&#39;是用R版本4.0.5 来建造的
+## 载入需要的程辑包：grid
+# Get cell counts for improved variable
+counts &lt;- table(Arthritis$Improved)
+counts
+# simple bar plot
+barplot(counts, main = &quot;Simple Bar Plot&quot;, xlab = &quot;Improvement&quot;, ylab = &quot;Frequency&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code>
+# horizontal bar plot
+barplot(counts, main = &quot;Horizontal Bar Plot&quot;, xlab = &quot;Frequency&quot;, ylab = &quot;Improvement&quot;, horiz = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-2.png" width="672" /></p>
+<pre class="r"><code># get counts for Improved by Treatment table
+counts &lt;- table(Arthritis$Improved,Arthritis$Treatment)
+counts
+# stacked barplot
+barplot(counts, main = &quot;Stacked Bar Plot&quot;, xlab = &quot;Treatment&quot;, ylab = &quot;Frequency&quot;, col = c(&quot;red&quot;, &quot;yellow&quot;, &quot;green&quot;), legend = rownames(counts))</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-3.png" width="672" /></p>
+<pre class="r"><code>
+# grouped barplot
+barplot(counts, main = &quot;Grouped Bar Plot&quot;, xlab = &quot;Treatment&quot;, ylab = &quot;Frequency&quot;, col = c(&quot;red&quot;, &quot;yellow&quot;, &quot;green&quot;), legend = rownames(counts), beside = TRUE)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-4.png" width="672" /></p>
+<pre class="r"><code># Mean bar plots
+states &lt;- data.frame(state.region, state.x77)
+means &lt;- aggregate(states$Illiteracy, 
+    by = list(state.region), 
+    FUN = mean)
+means
+means &lt;- means[order(means$x), ]
+means
+barplot(means$x, names.arg = means$Group.1)
+title(&quot;Mean Illiteracy Rate&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-5.png" width="672" /></p>
+<pre class="r"><code>#为棘状图（spinogram）
+attach(Arthritis) 
+counts &lt;- table(Treatment, Improved) 
+spine(counts, main=&quot;Spinogram Example&quot;) </code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-6.png" width="672" /></p>
+<pre class="r"><code>detach(Arthritis) </code></pre>
+</div>
+<div id="section-1" class="section level2">
 <h2>5.13</h2>
 <p>睡得好是真的很重要呀</p>
 <pre class="r"><code>options(digits=2)#)限定了输出小数点后数字位数
@@ -89,7 +137,7 @@ mydate(&quot;medium&quot;)</code></pre>
 <li>包reshape2 <code>数melt()和dcast()</code></li>
 </ul>
 </div>
-<div id="section-1" class="section level2">
+<div id="section-2" class="section level2">
 <h2>5.12</h2>
 <p>昨晚是被蚊子毁掉的睡眠！</p>
 <pre class="r"><code>x &lt;- c(1, 2, 3, 4, 5, 6, 7, 8)
@@ -118,7 +166,7 @@ head(mydata, n=10)   </code></pre>
 <code>apply(x, MARGIN, FUN, ...)</code></li>
 </ul>
 </div>
-<div id="section-2" class="section level2">
+<div id="section-3" class="section level2">
 <h2>5.11</h2>
 <p>答辩让我好疲惫。。</p>
 <ul>
@@ -158,7 +206,7 @@ newdf &lt;- sqldf(&quot;select * from mtcars where carb=1 order by mpg&quot;,
 newdf &lt;- sqldf(&quot;select avg(mpg) as avg_mpg, avg(disp) as avg_disp,
     gear from mtcars where cyl in (4, 6) group by gear&quot;)</code></pre>
 </div>
-<div id="section-3" class="section level2">
+<div id="section-4" class="section level2">
 <h2>5.10</h2>
 <pre class="r"><code>mydata &lt;- data.frame(x1 = c(2, 2, 6, 4), x2 = c(3, 4, 2, 8))
 mydata$sumx &lt;- mydata$x1 + mydata$x2
@@ -179,13 +227,13 @@ print(sum(x, na.rm=TRUE))</code></pre>
 <li><code>na.omit()</code>可以删除所有含有缺失数据的行</li>
 </ul>
 </div>
-<div id="section-4" class="section level2">
+<div id="section-5" class="section level2">
 <h2>5.9</h2>
 <pre class="r"><code>attach(mtcars)
 plot(wt, mpg)
 abline(lm(mpg ~ wt))
 title(&quot;Regression of MPG on Weight&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-1.png" width="672" /></p>
 <pre class="r"><code>detach(mtcars)</code></pre>
 <ul>
 <li>可用<code>par(optionname=value,optionname=name,...)</code>修改图形参数，也可用高级绘图函数直接提供的optionname=value的键值对</li>
@@ -194,7 +242,7 @@ title(&quot;Regression of MPG on Weight&quot;)</code></pre>
 <li><code>layout()</code>👍</li>
 </ul>
 </div>
-<div id="section-5" class="section level2">
+<div id="section-6" class="section level2">
 <h2>5.8</h2>
 <pre class="r"><code>#矩阵
 y = matrix(1:20,nrow = 5, ncol = 4)
@@ -241,17 +289,15 @@ str(patientdata)</code></pre>
 <li>edit() 可以修改数据</li>
 </ul>
 </div>
-<div id="section-6" class="section level2">
+<div id="section-7" class="section level2">
 <h2>5.7</h2>
 <pre class="r"><code>help.start()
 ## starting httpd help server ... done
 help(package = &quot;vcd&quot;)
 library(vcd) 
-## Warning: 程辑包&#39;vcd&#39;是用R版本4.0.5 来建造的
-## 载入需要的程辑包：grid
 help(Arthritis) #阅读数据集Arthritis的描述
 Arthritis 
 example(Arthritis)# 运行数据集Arthritis自带的示例</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-2.png" width="672" /></p>
 <pre class="r"><code>#q()</code></pre>
 </div>

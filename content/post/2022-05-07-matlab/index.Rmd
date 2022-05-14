@@ -12,6 +12,22 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.14
+- 积分
+```
+syms x; int(f,x)
+%通过调用 subs命令，使用给定的值我们可以计算表达式的数值
+% 三重积分
+int(int(int(x*y^2*z^5,x),y),z)
+% 数值积分
+format long
+x = linspace(-2,2,200)
+gauss = exp(-x.^2)
+in = trapz(x,gauss)
+```
+- 正交积分？`quad` 和 `quad1`
+
+
 ## 5.13
 - ode的数值解
 ```

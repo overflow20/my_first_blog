@@ -1,6 +1,6 @@
 ---
-title: R每日随心记
-author: zyy
+title: "R每日随心记"
+author: "zyy"
 date: '2022-05-07'
 slug: r
 categories: []
@@ -17,7 +17,28 @@ knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
 
+## 5.16
+💞💞💞听大佬讲座！
+[大佬讲座ppt链接](https://connect.xjtlu.edu.cn/interaction/forum/topic.php?id=1132)
+
+```
+library(animation)
+plot.new()
+for (i in 1:30){
+    points(runif(1), runif(1), pch = 19, cex = 2)
+    Sys.sleep(0.2)
+}
+
+```
+
+```{r, animation.hook='gifski'}
+for (i in 1:20){
+    hist(rnorm(20))
+}
+```
+
 ## 5.14
+
 吃的太饱容易犯困😵
 
 - 条形图

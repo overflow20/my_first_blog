@@ -12,6 +12,17 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.16
+- 变换
+
+emm回顾一下拉普拉斯变化与傅里叶变化吧
+$$
+F(s) = \int_{0}^{\infty}f(t)e^{-st}dt
+$$
+$$
+F(\omega) = \int_{-\infty}^{\infty}f(x)e^{-i\omega x}dx
+$$
+
 ## 5.14
 - 积分
 ```

@@ -14,6 +14,23 @@ tags: []
 <li><a href="https://www.bookstack.cn/read/pyda-2e-zh/README.md">利用 Python 进行数据分析 · 第 2 版</a>,第3版已于2022年更新，<a href="https://wesmckinney.com/book/">第3版网址</a></li>
 </ul>
 <div id="section" class="section level2">
+<h2>5.16</h2>
+<p>我、瘸、了呜呜呜</p>
+<ul>
+<li>简单统计</li>
+</ul>
+<pre><code>data = pd.DataFrame({&#39;Qu1&#39;: [1, 3, 4, 3, 4], &#39;Qu2&#39;: [2, 3, 1, 2, 3],&#39;Qu3&#39;: [1, 5, 2, 4, 4]})
+result = data.apply(pd.value_counts).fillna(0)</code></pre>
+<ul>
+<li>读写文本格式的数据
+层次花索引</li>
+</ul>
+<pre><code>from lxml import objectify
+from io import StringIO
+tag = &#39;&lt;a href=&quot;http://www.google.com&quot;&gt;Google&lt;/a&gt;&#39;
+root = objectify.parse(StringIO(tag)).getroot()</code></pre>
+</div>
+<div id="section-1" class="section level2">
 <h2>5.14</h2>
 <p>今日有了新想法💪💪💪</p>
 <ul>
@@ -46,7 +63,7 @@ frame3.values</code></pre>
 <li>排序<code>frame.sort_index(axis=1, ascending=False, by=)</code> rank?</li>
 </ul>
 </div>
-<div id="section-1" class="section level2">
+<div id="section-2" class="section level2">
 <h2>5.13</h2>
 <ul>
 <li><code>np.save(),np.load()</code></li>
@@ -62,7 +79,7 @@ q, r = qr(mat)</code></pre>
 <p><img src="6.jpg" />
 <img src="7.jpg" /></p>
 </div>
-<div id="section-2" class="section level2">
+<div id="section-3" class="section level2">
 <h2>5.12</h2>
 <pre><code>arr = np.random.randn(7) * 5
 remainder, whole_part = np.modf(arr)#它会返回浮点数数组的小数和整数部分</code></pre>
@@ -80,7 +97,7 @@ np.where(arr &gt; 0, 2, arr) # set only positive values to 2</code></pre>
 <p><img src="4.jpg" /></p>
 <p><img src="5.jpg" /></p>
 </div>
-<div id="section-3" class="section level2">
+<div id="section-4" class="section level2">
 <h2>5.11</h2>
 <ul>
 <li>花式索引(Fancy indexing) 是一个NumPy术语，它指的是利用整数数组进行索引。花式索引跟切片不一样，它总是将数据复制到新数组中。</li>
@@ -94,7 +111,7 @@ np.dot(arr, arr.T)</code></pre>
 受一对轴编号</li>
 </ul>
 </div>
-<div id="section-4" class="section level2">
+<div id="section-5" class="section level2">
 <h2>5.10</h2>
 <p>今天组合摸鱼哈哈哈来了！</p>
 <ul>
@@ -103,7 +120,7 @@ np.dot(arr, arr.T)</code></pre>
 </ul>
 <p>我可真是太困了，为什么组会不分个本硕博三个等级开呢呜呜呜😭😭😭</p>
 </div>
-<div id="section-5" class="section level2">
+<div id="section-6" class="section level2">
 <h2>5.9</h2>
 <ul>
 <li>字典的<code>setdefault</code></li>
@@ -126,7 +143,7 @@ for letter, names in itertools.groupby(names, first_letter):
 <p>到78页了，这个<a href="https://www.runoob.com/python3/python3-iterator-generator.html">生成器迭代器</a>有搞头
 <a href="https://zhuanlan.zhihu.com/p/341439647">这个也不错</a></p>
 </div>
-<div id="section-6" class="section level2">
+<div id="section-7" class="section level2">
 <h2>5.8</h2>
 <p>啊我刚看完R的数据类型头大了哈哈哈✋</p>
 <ul>
@@ -139,7 +156,7 @@ for letter, names in itertools.groupby(names, first_letter):
 </ul>
 <p>今天看到57页！</p>
 </div>
-<div id="section-7" class="section level2">
+<div id="section-8" class="section level2">
 <h2>5.7</h2>
 <p>一些行话：</p>
 <ul>

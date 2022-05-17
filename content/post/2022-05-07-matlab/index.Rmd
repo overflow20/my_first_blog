@@ -12,6 +12,20 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.17
+- 曲线拟合
+```
+handicap = [6:2:24]
+Ave = [3.94, 3.8, 4.1, 3.87, 4.45, 4.33, 4.12, 4.43, 4.6, 4.5]; 
+p = polyfit(handicap,Ave,1); 
+m = p(1)
+b = p(2) 
+x = [6:0.1:24];
+y = m*x + b; 
+subplot(2,1,2); 
+
+```
+
 ## 5.16
 - 变换
 

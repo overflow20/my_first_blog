@@ -12,11 +12,97 @@ tags: []
 书籍列表(更新中)：
 
 - R语言实战(第2版)
+- [现代统计图形](https://bookdown.org/xiangyun/msg/)
+
 ```{r setup, include=T}
 knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
 
+## 5.17
+```{r}
+troops <- read.table(system.file("extdata", "troops.txt", package = "MSG"), header = TRUE)
+cities <- read.table(system.file("extdata", "cities.txt", package = "MSG"), header = TRUE)
+library(ggplot2)
+p <- ggplot(cities, aes(x = long, y = lat)) # 框架
+p <- p + geom_path(aes(size = survivors, colour = direction, group = group), 
+                   data = troops, lineend = "round") # 军队路线
+p <- p + geom_point() # 城市点
+p <- p + geom_text(aes(label = city), hjust = 0, vjust = 1, size = 2.5) # 城市名称
+p <- p + scale_colour_manual(values = c("grey50", "red")) + 
+  scale_size(range = c(1, 10)) +
+  theme(legend.position = "none") + 
+  xlim(24, 39) # 细节调整工作
+print(p) # 打印全图
+
+```
+- R 的编程方式是面向对象（Object-Oriented）的
+- 向量：
+```{r}
+1:10
+c(7.11, 9.11, 9.19, 1.23)
+x <- c(7.11, 9.11, 9.19, 1.23)
+x[c(1, 4)]
+sort(x)
+seq(7,9,0.2)
+seq(7, 9, length.out = 6)#生成向量长度为 6
+rep(1:3, 5)
+rep(1:3, each = 5)
+```
+
+- 因子
+```{r}
+x <- factor(c(1, 2, 3, 1, 1, 3, 2, 3, 3), levels = 1:3, labels = c("g1", "g2", "g3"))
+#我们可以对因子型数据求频数、将其转化为整数或字符型向量。
+table(x)
+as.integer(x)
+as.character(x)
+#因子型数据在分类汇总时比较有用，例如在 tapply() 中：
+y <- 1:9
+data.frame(y, x) # x 和 y 并列放的样子
+tapply(y, x, mean) # x 的每一组的均值
+#定序变量:与此相关的函数为 ordered()
+```
+
+- 数组和矩阵
+
+数组和矩阵可以分别由`array()`和`matrix()` 函数生成
+```{r}
+x <- array(1:24, c(3, 4, 2)) # 3 维数组示例
+dim(x)
+x <- matrix(1:12, nrow = 2, ncol = 6) # 矩阵示例
+# 一个随机方阵
+(x <- matrix(c(2, 9, 4, 5, 6, 8, 1, 3, 7), 3))
+solve(x)
+```
+- 数据框和列表
+
+数据框（data frame）和列表（list）是 R 中非常灵活的数据结构
+```{r}
+# 生成一个数据框，前两列为数值型，后一列为字符型
+data.frame(x = rnorm(5), y = runif(5), z = letters[1:5])
+# 包含四个子对象的列表
+Lst <- list(name = "Fred", wife = "Mary", no.children = 3, child.ages = c(4, 7, 9))
+```
+- 矩阵的本质是（带有维度属性的）向量，数据框的本质是（整齐的）列表。
+
+- 函数
+```{r}
+kurtosis <- function(x, na.rm = FALSE) {
+  # 去掉缺失值
+  if (na.rm) x <- x[!is.na(x)]
+  return(sum((x - mean(x))^4) / (length(x) * var(x)^2) - 3)
+}#该函数有两个参数，数据向量x和是否删除缺失值 na.rm，后者有默认值 FALSE；
+kurtosis(runif(100))
+#泛型函数 （generic function）传给 plot() 的第一个参数是何种类，则调用何种函数进行作图
+head(methods("plot"), 24) # 显示前24个
+class(iris)
+plot(iris) # 调用 plot.data.frame() 作散点图矩阵
+x <- density(faithful$waiting)
+class(x)
+par(mar = c(4, 4, 3, 0.5))
+plot(x) # 调用 plot.density() 作密度曲线
+```
 ## 5.16
 💞💞💞听大佬讲座！
 [大佬讲座ppt链接](https://connect.xjtlu.edu.cn/interaction/forum/topic.php?id=1132)

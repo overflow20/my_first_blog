@@ -13,12 +13,90 @@ tags: []
 <p>书籍列表(更新中)：</p>
 <ul>
 <li>R语言实战(第2版)</li>
+<li><a href="https://bookdown.org/xiangyun/msg/">现代统计图形</a></li>
 </ul>
 <pre class="r"><code>knitr::opts_chunk$set(echo = T,collapse = T,
                       results = &quot;hide&quot;)</code></pre>
 <div id="section" class="section level2">
-<h2>5.16</h2>
-<p>💞💞💞听大佬讲座！
+<h2>5.17</h2>
+<pre class="r"><code>troops &lt;- read.table(system.file(&quot;extdata&quot;, &quot;troops.txt&quot;, package = &quot;MSG&quot;), header = TRUE)
+cities &lt;- read.table(system.file(&quot;extdata&quot;, &quot;cities.txt&quot;, package = &quot;MSG&quot;), header = TRUE)
+library(ggplot2)
+p &lt;- ggplot(cities, aes(x = long, y = lat)) # 框架
+p &lt;- p + geom_path(aes(size = survivors, colour = direction, group = group), 
+                   data = troops, lineend = &quot;round&quot;) # 军队路线
+p &lt;- p + geom_point() # 城市点
+p &lt;- p + geom_text(aes(label = city), hjust = 0, vjust = 1, size = 2.5) # 城市名称
+p &lt;- p + scale_colour_manual(values = c(&quot;grey50&quot;, &quot;red&quot;)) + 
+  scale_size(range = c(1, 10)) +
+  theme(legend.position = &quot;none&quot;) + 
+  xlim(24, 39) # 细节调整工作
+print(p) # 打印全图</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" />
+- R 的编程方式是面向对象（Object-Oriented）的
+- 向量：</p>
+<pre class="r"><code>1:10
+c(7.11, 9.11, 9.19, 1.23)
+x &lt;- c(7.11, 9.11, 9.19, 1.23)
+x[c(1, 4)]
+sort(x)
+seq(7,9,0.2)
+seq(7, 9, length.out = 6)#生成向量长度为 6
+rep(1:3, 5)
+rep(1:3, each = 5)</code></pre>
+<ul>
+<li>因子</li>
+</ul>
+<pre class="r"><code>x &lt;- factor(c(1, 2, 3, 1, 1, 3, 2, 3, 3), levels = 1:3, labels = c(&quot;g1&quot;, &quot;g2&quot;, &quot;g3&quot;))
+#我们可以对因子型数据求频数、将其转化为整数或字符型向量。
+table(x)
+as.integer(x)
+as.character(x)
+#因子型数据在分类汇总时比较有用，例如在 tapply() 中：
+y &lt;- 1:9
+data.frame(y, x) # x 和 y 并列放的样子
+tapply(y, x, mean) # x 的每一组的均值
+#定序变量:与此相关的函数为 ordered()</code></pre>
+<ul>
+<li>数组和矩阵</li>
+</ul>
+<p>数组和矩阵可以分别由<code>array()</code>和<code>matrix()</code> 函数生成</p>
+<pre class="r"><code>x &lt;- array(1:24, c(3, 4, 2)) # 3 维数组示例
+dim(x)
+x &lt;- matrix(1:12, nrow = 2, ncol = 6) # 矩阵示例
+# 一个随机方阵
+(x &lt;- matrix(c(2, 9, 4, 5, 6, 8, 1, 3, 7), 3))
+solve(x)</code></pre>
+<ul>
+<li>数据框和列表</li>
+</ul>
+<p>数据框（data frame）和列表（list）是 R 中非常灵活的数据结构</p>
+<pre class="r"><code># 生成一个数据框，前两列为数值型，后一列为字符型
+data.frame(x = rnorm(5), y = runif(5), z = letters[1:5])
+# 包含四个子对象的列表
+Lst &lt;- list(name = &quot;Fred&quot;, wife = &quot;Mary&quot;, no.children = 3, child.ages = c(4, 7, 9))</code></pre>
+<ul>
+<li><p>矩阵的本质是（带有维度属性的）向量，数据框的本质是（整齐的）列表。</p></li>
+<li><p>函数</p></li>
+</ul>
+<pre class="r"><code>kurtosis &lt;- function(x, na.rm = FALSE) {
+  # 去掉缺失值
+  if (na.rm) x &lt;- x[!is.na(x)]
+  return(sum((x - mean(x))^4) / (length(x) * var(x)^2) - 3)
+}#该函数有两个参数，数据向量x和是否删除缺失值 na.rm，后者有默认值 FALSE；
+kurtosis(runif(100))
+#泛型函数 （generic function）传给 plot() 的第一个参数是何种类，则调用何种函数进行作图
+head(methods(&quot;plot&quot;), 24) # 显示前24个
+class(iris)
+plot(iris) # 调用 plot.data.frame() 作散点图矩阵</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<pre class="r"><code>x &lt;- density(faithful$waiting)
+class(x)
+par(mar = c(4, 4, 3, 0.5))
+plot(x) # 调用 plot.density() 作密度曲线</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-2.png" width="672" />
+## 5.16
+💞💞💞听大佬讲座！
 <a href="https://connect.xjtlu.edu.cn/interaction/forum/topic.php?id=1132">大佬讲座ppt链接</a></p>
 <pre><code>library(animation)
 plot.new()
@@ -30,7 +108,7 @@ for (i in 1:30){
 <pre class="r"><code>for (i in 1:20){
     hist(rnorm(20))
 }</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-.gif" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-.gif" width="672" /></p>
 </div>
 <div id="section-1" class="section level2">
 <h2>5.14</h2>
@@ -47,21 +125,21 @@ counts &lt;- table(Arthritis$Improved)
 counts
 # simple bar plot
 barplot(counts, main = &quot;Simple Bar Plot&quot;, xlab = &quot;Improvement&quot;, ylab = &quot;Frequency&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" /></p>
 <pre class="r"><code>
 # horizontal bar plot
 barplot(counts, main = &quot;Horizontal Bar Plot&quot;, xlab = &quot;Frequency&quot;, ylab = &quot;Improvement&quot;, horiz = TRUE)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-2.png" width="672" /></p>
 <pre class="r"><code># get counts for Improved by Treatment table
 counts &lt;- table(Arthritis$Improved,Arthritis$Treatment)
 counts
 # stacked barplot
 barplot(counts, main = &quot;Stacked Bar Plot&quot;, xlab = &quot;Treatment&quot;, ylab = &quot;Frequency&quot;, col = c(&quot;red&quot;, &quot;yellow&quot;, &quot;green&quot;), legend = rownames(counts))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-3.png" width="672" /></p>
 <pre class="r"><code>
 # grouped barplot
 barplot(counts, main = &quot;Grouped Bar Plot&quot;, xlab = &quot;Treatment&quot;, ylab = &quot;Frequency&quot;, col = c(&quot;red&quot;, &quot;yellow&quot;, &quot;green&quot;), legend = rownames(counts), beside = TRUE)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-4.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-4.png" width="672" /></p>
 <pre class="r"><code># Mean bar plots
 states &lt;- data.frame(state.region, state.x77)
 means &lt;- aggregate(states$Illiteracy, 
@@ -72,12 +150,12 @@ means &lt;- means[order(means$x), ]
 means
 barplot(means$x, names.arg = means$Group.1)
 title(&quot;Mean Illiteracy Rate&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-5.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-5.png" width="672" /></p>
 <pre class="r"><code>#为棘状图（spinogram）
 attach(Arthritis) 
 counts &lt;- table(Treatment, Improved) 
 spine(counts, main=&quot;Spinogram Example&quot;) </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-6.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-6.png" width="672" /></p>
 <pre class="r"><code>detach(Arthritis) </code></pre>
 </div>
 <div id="section-2" class="section level2">
@@ -246,10 +324,13 @@ print(sum(x, na.rm=TRUE))</code></pre>
 <div id="section-6" class="section level2">
 <h2>5.9</h2>
 <pre class="r"><code>attach(mtcars)
+## The following object is masked from package:ggplot2:
+## 
+##     mpg
 plot(wt, mpg)
 abline(lm(mpg ~ wt))
 title(&quot;Regression of MPG on Weight&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-19-1.png" width="672" /></p>
 <pre class="r"><code>detach(mtcars)</code></pre>
 <ul>
 <li>可用<code>par(optionname=value,optionname=name,...)</code>修改图形参数，也可用高级绘图函数直接提供的optionname=value的键值对</li>
@@ -314,6 +395,6 @@ library(vcd)
 help(Arthritis) #阅读数据集Arthritis的描述
 Arthritis 
 example(Arthritis)# 运行数据集Arthritis自带的示例</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-23-2.png" width="672" /></p>
 <pre class="r"><code>#q()</code></pre>
 </div>

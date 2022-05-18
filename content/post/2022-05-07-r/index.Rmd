@@ -11,8 +11,8 @@ tags: []
 
 书籍列表(更新中)：
 
-- R语言实战(第2版)
-- [现代统计图形](https://bookdown.org/xiangyun/msg/)
+-   R语言实战(第2版)
+-   [现代统计图形](https://bookdown.org/xiangyun/msg/)
 
 ```{r setup, include=T}
 knitr::opts_chunk$set(echo = T,collapse = T,
@@ -20,6 +20,7 @@ knitr::opts_chunk$set(echo = T,collapse = T,
 ```
 
 ## 5.17
+
 ```{r}
 troops <- read.table(system.file("extdata", "troops.txt", package = "MSG"), header = TRUE)
 cities <- read.table(system.file("extdata", "cities.txt", package = "MSG"), header = TRUE)
@@ -36,8 +37,10 @@ p <- p + scale_colour_manual(values = c("grey50", "red")) +
 print(p) # 打印全图
 
 ```
-- R 的编程方式是面向对象（Object-Oriented）的
-- 向量：
+
+-   R 的编程方式是面向对象（Object-Oriented）的
+-   向量：
+
 ```{r}
 1:10
 c(7.11, 9.11, 9.19, 1.23)
@@ -50,7 +53,8 @@ rep(1:3, 5)
 rep(1:3, each = 5)
 ```
 
-- 因子
+-   因子
+
 ```{r}
 x <- factor(c(1, 2, 3, 1, 1, 3, 2, 3, 3), levels = 1:3, labels = c("g1", "g2", "g3"))
 #我们可以对因子型数据求频数、将其转化为整数或字符型向量。
@@ -64,9 +68,10 @@ tapply(y, x, mean) # x 的每一组的均值
 #定序变量:与此相关的函数为 ordered()
 ```
 
-- 数组和矩阵
+-   数组和矩阵
 
 数组和矩阵可以分别由`array()`和`matrix()` 函数生成
+
 ```{r}
 x <- array(1:24, c(3, 4, 2)) # 3 维数组示例
 dim(x)
@@ -75,18 +80,22 @@ x <- matrix(1:12, nrow = 2, ncol = 6) # 矩阵示例
 (x <- matrix(c(2, 9, 4, 5, 6, 8, 1, 3, 7), 3))
 solve(x)
 ```
-- 数据框和列表
+
+-   数据框和列表
 
 数据框（data frame）和列表（list）是 R 中非常灵活的数据结构
+
 ```{r}
 # 生成一个数据框，前两列为数值型，后一列为字符型
 data.frame(x = rnorm(5), y = runif(5), z = letters[1:5])
 # 包含四个子对象的列表
 Lst <- list(name = "Fred", wife = "Mary", no.children = 3, child.ages = c(4, 7, 9))
 ```
-- 矩阵的本质是（带有维度属性的）向量，数据框的本质是（整齐的）列表。
 
-- 函数
+-   矩阵的本质是（带有维度属性的）向量，数据框的本质是（整齐的）列表。
+
+-   函数
+
 ```{r}
 kurtosis <- function(x, na.rm = FALSE) {
   # 去掉缺失值
@@ -103,19 +112,17 @@ class(x)
 par(mar = c(4, 4, 3, 0.5))
 plot(x) # 调用 plot.density() 作密度曲线
 ```
+
 ## 5.16
-💞💞💞听大佬讲座！
-[大佬讲座ppt链接](https://connect.xjtlu.edu.cn/interaction/forum/topic.php?id=1132)
 
-```
-library(animation)
-plot.new()
-for (i in 1:30){
-    points(runif(1), runif(1), pch = 19, cex = 2)
-    Sys.sleep(0.2)
-}
+💞💞💞听大佬讲座！ [大佬讲座ppt链接](https://connect.xjtlu.edu.cn/interaction/forum/topic.php?id=1132)
 
-```
+    library(animation)
+    plot.new()
+    for (i in 1:30){
+        points(runif(1), runif(1), pch = 19, cex = 2)
+        Sys.sleep(0.2)
+    }
 
 ```{r, animation.hook='gifski'}
 for (i in 1:20){
@@ -127,7 +134,8 @@ for (i in 1:20){
 
 吃的太饱容易犯困😵
 
-- 条形图
+-   条形图
+
 ```{r}
 # Load vcd package
 library(vcd)
@@ -165,7 +173,9 @@ detach(Arthritis)
 ```
 
 ## 5.13
+
 睡得好是真的很重要呀
+
 ```{r}
 options(digits=2)#)限定了输出小数点后数字位数
 Student <- c("John Davis", "Angela Williams", 
@@ -211,10 +221,14 @@ while (i > 0) {
     print(i)
     i <- i - 1} 
 ```
--  if
-    - `if (cond) statement1 else statement2`
-    - `ifelse(cond, statement1, statement2)`
-- switch `switch(expr, ...)`
+
+-   if
+
+    -   `if (cond) statement1 else statement2`
+    -   `ifelse(cond, statement1, statement2)`
+
+-   switch `switch(expr, ...)`
+
 ```{r}
 mydate <- function(type="long") {
     switch(type,
@@ -227,25 +241,30 @@ mydate("short")
 mydate()
 mydate("medium")
 ```
-- 函数
-```
-myfunction <- function(arg1, arg2, ... ){ 
- statements 
- return(object) 
-} 
-```
+
+-   函数
+
+<!-- -->
+
+    myfunction <- function(arg1, arg2, ... ){ 
+     statements 
+     return(object) 
+    } 
+
 ![](5.jpg)
 
-- 包reshape2 `数melt()和dcast()`
-
+-   包reshape2 `数melt()和dcast()`
 
 ## 5.12
+
 昨晚是被蚊子毁掉的睡眠！
+
 ```{r}
 x <- c(1, 2, 3, 4, 5, 6, 7, 8)
 mean(x)
 sd(x)
 ```
+
 ![](2.jpg)
 
 ```{r}
@@ -263,17 +282,16 @@ dim(mydata)
 head(mydata, n=10)   
 ```
 
-- 字符串处理函数
-- 其他有用函数
-![](4.jpg)
-- R中提供了一个`apply()`函数，可将一个任意函数“应用”到矩阵、数组、数据框的任何维
-度上。`apply()`函数的使用格式为：
-`apply(x, MARGIN, FUN, ...)`
+-   字符串处理函数
+-   其他有用函数 ![](4.jpg)
+-   R中提供了一个`apply()`函数，可将一个任意函数"应用"到矩阵、数组、数据框的任何维 度上。`apply()`函数的使用格式为： `apply(x, MARGIN, FUN, ...)`
 
 ## 5.11
+
 答辩让我好疲惫。。
 
-- 日期
+-   日期
+
 ```{r}
 mydates <- as.Date(c("2007-06-22","2004-02-13")) 
 today <- Sys.Date() 
@@ -283,7 +301,7 @@ difftime(today, dob, units="weeks")
 #strDates <- as.character(dates)将日期转为字符
 ```
 
-![](1.jpg) 
+![](1.jpg)
 
 ```{r}
 a <- c(1, 2, 3)
@@ -297,10 +315,11 @@ is.vector(a)
 is.character(a)
 ```
 
-- 使用`order()`函数对一个数据框进行排序。默认的排序顺序是升序。在排序变量的前边加一个减号即可得到降序的排序结果
-- 横向合并两个数据框（数据集），使用`merge()`函数，`rbind(),cbind()`
-- `subset()`函数大概是选择变量和观测最简单的方法
-- `sample()`函数能够让你从数据集中（有放回或无放回地）抽取大小为n的一个随机样本
+-   使用`order()`函数对一个数据框进行排序。默认的排序顺序是升序。在排序变量的前边加一个减号即可得到降序的排序结果
+-   横向合并两个数据框（数据集），使用`merge()`函数，`rbind(),cbind()`
+-   `subset()`函数大概是选择变量和观测最简单的方法
+-   `sample()`函数能够让你从数据集中（有放回或无放回地）抽取大小为n的一个随机样本
+
 ```{r}
 library(sqldf)
 newdf <- sqldf("select * from mtcars where carb=1 order by mpg", 
@@ -310,6 +329,7 @@ newdf <- sqldf("select avg(mpg) as avg_mpg, avg(disp) as avg_disp,
 ```
 
 ## 5.10
+
 ```{r}
 mydata <- data.frame(x1 = c(2, 2, 6, 4), x2 = c(3, 4, 2, 8))
 mydata$sumx <- mydata$x1 + mydata$x2
@@ -321,14 +341,16 @@ detach(mydata)
 mydata <- transform(mydata, sumx = x1 + x2, meanx = (x1 + x2)/2)
 ```
 
-- plyr包中有一个`rename()`函数，可用于修改变量名 
+-   plyr包中有一个`rename()`函数，可用于修改变量名
+
 ```{r}
 y <- c(1, 2, 3, NA) 
 print(is.na(y))
 x <- c(1, 2, NA, 3) 
 print(sum(x, na.rm=TRUE))
 ```
-- `na.omit()`可以删除所有含有缺失数据的行
+
+-   `na.omit()`可以删除所有含有缺失数据的行
 
 ## 5.9
 
@@ -339,10 +361,11 @@ abline(lm(mpg ~ wt))
 title("Regression of MPG on Weight")
 detach(mtcars)
 ```
-- 可用`par(optionname=value,optionname=name,...)`修改图形参数，也可用高级绘图函数直接提供的optionname=value的键值对
-- 函数`colors()`可以返回所有可用颜色的名称
-- 函数`plotmath()`可以为图形主体或边界上的标题、坐标轴名称或文本标注添加数学符号
-- `layout()`👍
+
+-   可用`par(optionname=value,optionname=name,...)`修改图形参数，也可用高级绘图函数直接提供的optionname=value的键值对
+-   函数`colors()`可以返回所有可用颜色的名称
+-   函数`plotmath()`可以为图形主体或边界上的标题、坐标轴名称或文本标注添加数学符号
+-   `layout()`👍
 
 ## 5.8
 
@@ -380,9 +403,10 @@ patientdata$age
 table(patientdata$diabetes, patientdata$status)#生成糖尿病类型变量diabetes和病情变量status的列联表
 ```
 
-- 函数attach()可将数据框添加到R的搜索路径中。R在遇到一个变量名以后，将检查搜索路径中的数据框，但是[R代码风格说明](https://google.github.io/styleguide/Rguide.html)里说最好不要用噢哈哈哈
-- **with**
-- 类别（名义型）变量和有序类别（有序型）变量在R中称为因子（factor）
+-   函数attach()可将数据框添加到R的搜索路径中。R在遇到一个变量名以后，将检查搜索路径中的数据框，但是[R代码风格说明](https://google.github.io/styleguide/Rguide.html)里说最好不要用噢哈哈哈
+-   **with**
+-   类别（名义型）变量和有序类别（有序型）变量在R中称为因子（factor）
+
 ```{r}
 patientID <- c(1, 2, 3, 4)
 age <- c(25, 34, 28, 52)
@@ -394,8 +418,7 @@ patientdata <- data.frame(patientID, age, diabetes, status)
 str(patientdata)
 ```
 
-- edit() 可以修改数据
-
+-   edit() 可以修改数据
 
 ## 5.7
 
@@ -408,4 +431,3 @@ Arthritis
 example(Arthritis)# 运行数据集Arthritis自带的示例
 #q()
 ```
-

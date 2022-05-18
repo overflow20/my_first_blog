@@ -11,6 +11,14 @@ tags: []
 
 - [利用 Python 进行数据分析 · 第 2 版](https://www.bookstack.cn/read/pyda-2e-zh/README.md),第3版已于2022年更新，[第3版网址](https://wesmckinney.com/book/)
 
+## 5.18
+打扫卫生令人疲惫
+
+- 排列和随机采样`sample`
+- 计算指标/哑变量`dummies = pd.get_dummies(df['key'], prefix='key')`
+- 处理字符串
+- 正则表达式好难[本地文件](file:///G:/python%E5%AD%A6%E4%B9%A0%E8%B5%84%E6%96%99/python/%E7%88%AC%E8%99%AB%E5%B5%A9%E5%A4%A9/6%20%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F.pdf)
+
 ## 5.17
 扭伤后正确处理步骤：立马冷敷，24h后热敷！希望我再也用不到这样的知识！
 

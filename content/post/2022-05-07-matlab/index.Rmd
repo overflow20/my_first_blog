@@ -12,6 +12,15 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.18
+- 伽马函数 `x = gamma(n)`
+```
+n = linspace(0,5);
+plot(n,gamma(n)),xlabel('n'),ylabel('Gamma(n)'),grid on 
+```
+
+- 贝塔函数 `x = beta(m,n)`
+
 ## 5.17
 - 曲线拟合
 ```

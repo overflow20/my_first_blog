@@ -32,9 +32,11 @@ p &lt;- p + scale_colour_manual(values = c(&quot;grey50&quot;, &quot;red&quot;))
   theme(legend.position = &quot;none&quot;) + 
   xlim(24, 39) # 细节调整工作
 print(p) # 打印全图</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" />
-- R 的编程方式是面向对象（Object-Oriented）的
-- 向量：</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<ul>
+<li>R 的编程方式是面向对象（Object-Oriented）的</li>
+<li>向量：</li>
+</ul>
 <pre class="r"><code>1:10
 c(7.11, 9.11, 9.19, 1.23)
 x &lt;- c(7.11, 9.11, 9.19, 1.23)
@@ -94,23 +96,23 @@ plot(iris) # 调用 plot.data.frame() 作散点图矩阵</code></pre>
 class(x)
 par(mar = c(4, 4, 3, 0.5))
 plot(x) # 调用 plot.density() 作密度曲线</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-2.png" width="672" />
-## 5.16
-💞💞💞听大佬讲座！
-<a href="https://connect.xjtlu.edu.cn/interaction/forum/topic.php?id=1132">大佬讲座ppt链接</a></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-2.png" width="672" /></p>
+</div>
+<div id="section-1" class="section level2">
+<h2>5.16</h2>
+<p>💞💞💞听大佬讲座！ <a href="https://connect.xjtlu.edu.cn/interaction/forum/topic.php?id=1132">大佬讲座ppt链接</a></p>
 <pre><code>library(animation)
 plot.new()
 for (i in 1:30){
     points(runif(1), runif(1), pch = 19, cex = 2)
     Sys.sleep(0.2)
-}
-</code></pre>
+}</code></pre>
 <pre class="r"><code>for (i in 1:20){
     hist(rnorm(20))
 }</code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-.gif" width="672" /></p>
 </div>
-<div id="section-1" class="section level2">
+<div id="section-2" class="section level2">
 <h2>5.14</h2>
 <p>吃的太饱容易犯困😵</p>
 <ul>
@@ -158,7 +160,7 @@ spine(counts, main=&quot;Spinogram Example&quot;) </code></pre>
 <p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-6.png" width="672" /></p>
 <pre class="r"><code>detach(Arthritis) </code></pre>
 </div>
-<div id="section-2" class="section level2">
+<div id="section-3" class="section level2">
 <h2>5.13</h2>
 <p>睡得好是真的很重要呀</p>
 <pre class="r"><code>options(digits=2)#)限定了输出小数点后数字位数
@@ -202,12 +204,12 @@ while (i &gt; 0) {
     print(i)
     i &lt;- i - 1} </code></pre>
 <ul>
-<li>if
+<li><p>if</p>
 <ul>
 <li><code>if (cond) statement1 else statement2</code></li>
 <li><code>ifelse(cond, statement1, statement2)</code></li>
 </ul></li>
-<li>switch <code>switch(expr, ...)</code></li>
+<li><p>switch <code>switch(expr, ...)</code></p></li>
 </ul>
 <pre class="r"><code>mydate &lt;- function(type=&quot;long&quot;) {
     switch(type,
@@ -222,6 +224,7 @@ mydate(&quot;medium&quot;)</code></pre>
 <ul>
 <li>函数</li>
 </ul>
+<!-- -->
 <pre><code>myfunction &lt;- function(arg1, arg2, ... ){ 
  statements 
  return(object) 
@@ -231,7 +234,7 @@ mydate(&quot;medium&quot;)</code></pre>
 <li>包reshape2 <code>数melt()和dcast()</code></li>
 </ul>
 </div>
-<div id="section-3" class="section level2">
+<div id="section-4" class="section level2">
 <h2>5.12</h2>
 <p>昨晚是被蚊子毁掉的睡眠！</p>
 <pre class="r"><code>x &lt;- c(1, 2, 3, 4, 5, 6, 7, 8)
@@ -253,14 +256,11 @@ dim(mydata)
 head(mydata, n=10)   </code></pre>
 <ul>
 <li>字符串处理函数</li>
-<li>其他有用函数
-<img src="4.jpg" /></li>
-<li>R中提供了一个<code>apply()</code>函数，可将一个任意函数“应用”到矩阵、数组、数据框的任何维
-度上。<code>apply()</code>函数的使用格式为：
-<code>apply(x, MARGIN, FUN, ...)</code></li>
+<li>其他有用函数 <img src="4.jpg" /></li>
+<li>R中提供了一个<code>apply()</code>函数，可将一个任意函数“应用”到矩阵、数组、数据框的任何维 度上。<code>apply()</code>函数的使用格式为： <code>apply(x, MARGIN, FUN, ...)</code></li>
 </ul>
 </div>
-<div id="section-4" class="section level2">
+<div id="section-5" class="section level2">
 <h2>5.11</h2>
 <p>答辩让我好疲惫。。</p>
 <ul>
@@ -300,7 +300,7 @@ newdf &lt;- sqldf(&quot;select * from mtcars where carb=1 order by mpg&quot;,
 newdf &lt;- sqldf(&quot;select avg(mpg) as avg_mpg, avg(disp) as avg_disp,
     gear from mtcars where cyl in (4, 6) group by gear&quot;)</code></pre>
 </div>
-<div id="section-5" class="section level2">
+<div id="section-6" class="section level2">
 <h2>5.10</h2>
 <pre class="r"><code>mydata &lt;- data.frame(x1 = c(2, 2, 6, 4), x2 = c(3, 4, 2, 8))
 mydata$sumx &lt;- mydata$x1 + mydata$x2
@@ -321,7 +321,7 @@ print(sum(x, na.rm=TRUE))</code></pre>
 <li><code>na.omit()</code>可以删除所有含有缺失数据的行</li>
 </ul>
 </div>
-<div id="section-6" class="section level2">
+<div id="section-7" class="section level2">
 <h2>5.9</h2>
 <pre class="r"><code>attach(mtcars)
 ## The following object is masked from package:ggplot2:
@@ -339,7 +339,7 @@ title(&quot;Regression of MPG on Weight&quot;)</code></pre>
 <li><code>layout()</code>👍</li>
 </ul>
 </div>
-<div id="section-7" class="section level2">
+<div id="section-8" class="section level2">
 <h2>5.8</h2>
 <pre class="r"><code>#矩阵
 y = matrix(1:20,nrow = 5, ncol = 4)
@@ -386,7 +386,7 @@ str(patientdata)</code></pre>
 <li>edit() 可以修改数据</li>
 </ul>
 </div>
-<div id="section-8" class="section level2">
+<div id="section-9" class="section level2">
 <h2>5.7</h2>
 <pre class="r"><code>help.start()
 ## starting httpd help server ... done

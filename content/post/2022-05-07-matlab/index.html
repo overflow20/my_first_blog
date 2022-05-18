@@ -15,6 +15,17 @@ tags: []
 <li><a href="https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html">官方文档！</a></li>
 </ul>
 <div id="section" class="section level2">
+<h2>5.18</h2>
+<ul>
+<li>伽马函数 <code>x = gamma(n)</code></li>
+</ul>
+<pre><code>n = linspace(0,5);
+plot(n,gamma(n)),xlabel(&#39;n&#39;),ylabel(&#39;Gamma(n)&#39;),grid on </code></pre>
+<ul>
+<li>贝塔函数 <code>x = beta(m,n)</code></li>
+</ul>
+</div>
+<div id="section-1" class="section level2">
 <h2>5.17</h2>
 <ul>
 <li>曲线拟合</li>
@@ -29,7 +40,7 @@ y = m*x + b;
 subplot(2,1,2); 
 </code></pre>
 </div>
-<div id="section-1" class="section level2">
+<div id="section-2" class="section level2">
 <h2>5.16</h2>
 <ul>
 <li>变换</li>
@@ -42,7 +53,7 @@ F(s) = \int_{0}^{\infty}f(t)e^{-st}dt
 F(\omega) = \int_{-\infty}^{\infty}f(x)e^{-i\omega x}dx
 \]</span></p>
 </div>
-<div id="section-2" class="section level2">
+<div id="section-3" class="section level2">
 <h2>5.14</h2>
 <ul>
 <li>积分</li>
@@ -60,7 +71,7 @@ in = trapz(x,gauss)</code></pre>
 <li>正交积分？<code>quad</code> 和 <code>quad1</code></li>
 </ul>
 </div>
-<div id="section-3" class="section level2">
+<div id="section-4" class="section level2">
 <h2>5.13</h2>
 <ul>
 <li>ode的数值解</li>
@@ -73,7 +84,7 @@ end
 f = 2 + sin(t);
 plot(t,y,&#39;o&#39;,t,f),xlabel(&#39;t&#39;),ylabel(&#39;y(t)&#39;),axis([0 2*pi 0 4]) </code></pre>
 </div>
-<div id="section-4" class="section level2">
+<div id="section-5" class="section level2">
 <h2>5.12</h2>
 <ul>
 <li>求极限<span class="math inline">\(\lim\limits_{x \to a}f(x)\)</span>用<code>limit(f,a)</code> <code>inf</code>表示极限，<code>a = limit(f,x,3,'left')</code>表示左右极限</li>
@@ -82,7 +93,7 @@ plot(t,y,&#39;o&#39;,t,f),xlabel(&#39;t&#39;),ylabel(&#39;y(t)&#39;),axis([0 2*p
 <li><code>dsolve</code> 命令求解符号微分方程</li>
 </ul>
 </div>
-<div id="section-5" class="section level2">
+<div id="section-6" class="section level2">
 <h2>5.11</h2>
 <ul>
 <li>解方程</li>
@@ -102,7 +113,7 @@ ezplot(d,[-7,13]);
 s = taylor(sin(x),&#39;order&#39;,20);
 ezplot(s)</code></pre>
 </div>
-<div id="section-6" class="section level2">
+<div id="section-7" class="section level2">
 <h2>5.10</h2>
 <ul>
 <li>救命Matlab画图怎么这么方便？？</li>
@@ -144,7 +155,7 @@ end</code></pre>
  pay = 85000 
 end</code></pre>
 </div>
-<div id="section-7" class="section level2">
+<div id="section-8" class="section level2">
 <h2>5.9</h2>
 <ul>
 <li><code>fplot</code>不错！</li>
@@ -156,7 +167,7 @@ z = cos(x).*sin(y);
 mesh(x,y,z),xlabel(&#39;x&#39;),ylabel(&#39;y&#39;),zlabel(&#39;z&#39;)</code></pre>
 <p>😭😭😭怎么感觉matlab画图比r方便好多，肯定是我r学艺不精！！</p>
 </div>
-<div id="section-8" class="section level2">
+<div id="section-9" class="section level2">
 <h2>5.8</h2>
 <ul>
 <li>等差元素的向量 <code>x = [0:2:10]</code></li>
@@ -177,7 +188,7 @@ mesh(x,y,z),xlabel(&#39;x&#39;),ylabel(&#39;y&#39;),zlabel(&#39;z&#39;)</code></
 <li>MATLAB 可以快速地对矩阵进行 LU、QR 或 SVD 分解。LU分解：<code>[L, U] = lu(A)</code>👍</li>
 </ul>
 </div>
-<div id="section-9" class="section level2">
+<div id="section-10" class="section level2">
 <h2>5.7</h2>
 <ul>
 <li>可以通过在命令窗口中输入 who 来刷新内存，

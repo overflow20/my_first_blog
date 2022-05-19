@@ -12,6 +12,14 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.19
+看看官方文档咯！
+
+- 矩阵数组
+`openExample('matlab/MatricesAndArraysGSExample')`
+
+- 数组索引
+`openExample('matlab/ArrayIndexingGSExample')`
 ## 5.18
 - 伽马函数 `x = gamma(n)`
 ```

@@ -18,6 +18,66 @@ tags: []
 knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
+
+## 5.19
+- 点
+关于点的设置，我们既可以在很多作图函数中用 `pch`（点的符号）， 等参数实现，也可以在用低层函数 `points()` 向已有图形中添加点来实现
+
+```{r}
+demo("pointTypes", package = "MSG")
+```
+```{r}
+# 先将鸢尾花的类型转化为整数 1、2、3，便于使用向量
+idx <- as.integer(iris[["Species"]])
+plot(iris[, 3:4],
+  pch = c(24, 21, 25)[idx],
+  col = c("black", "red", "blue")[idx], panel.first = grid()
+)
+legend("topleft",
+  legend = levels(iris[["Species"]]),
+  col = c("black", "red", "blue"), pch = c(24, 21, 25), bty = "n"
+)
+```
+```{r}
+par(mar = c(0.2, 0.2, 0.2, 0.2), mfrow = c(2, 2))
+for (n in c(63, 60, 76, 74)) {
+  set.seed(711)
+  plot.new()
+  box()
+  size <- c(replicate(n, 1 / rbeta(2, 1.5, 4)))
+  center <- t(replicate(n, runif(2)))[rep(1:n, each = 2), ]
+  color <- paste("#", apply(
+    replicate(2 * n, sample(c(0:9, LETTERS[1:6]), 8, TRUE)), 2, paste,
+    collapse = ""
+  ), sep = "")
+  points(center, cex = size, pch = rep(20:21, n), col = color)
+}
+
+```
+- 曲线、直线、线段、箭头、X-样条
+
+画线的函数：
+
+1. abline(a = NULL, b = NULL, h = NULL, v = NULL, reg = NULL, coef = NULL,untf = FALSE, ...)
+2. segments(x0, y0, x1 = x0, y1 = y0, col = par("fg"), lty = par("lty"),lwd = par("lwd"), ...)
+3. arrows(x0, y0, x1 = x0, y1 = y0, length = 0.25, angle = 30, code = 2, col = par("fg"), lty = par("lty"), lwd = par("lwd"), ...)
+4. xspline(x, y = NULL, shape = 0, open = TRUE, repEnds = TRUE, draw = TRUE,border = par("fg"), col = NA, ...)
+```{r}
+# 不作图，只画出框架，且指定坐标轴范围
+plot(1:10, type = "n", xlim = c(0, 10), ylim = c(0, 10))
+lines(1:10, abs(rnorm(10))) # 10 个正态随机数绝对值的波动线
+abline(a = 0, b = 1, col = "gray") # 不同的直线
+abline(v = 2, h = 2, lty = 2)
+text(8, 3, "abline(a = 0, b = 1)") # 添加文本
+arrows(8, 3.5, 6, 5.7, angle = 40) # 添加箭头
+# 参数用了向量：不同灰度的线段
+segments(rep(3, 4), 6:9, rep(5, 4), 6:9, col = gray(seq(0.2, 0.8, length = 4)))
+text(4, 9.8, "segments")
+```
+
+
+
+
 ## 5.18
 
 - 今天研究一下颜色！
@@ -85,6 +145,7 @@ yellow = rgb(1,1,0)
 cyan = rgb(0,1,1)
 barplot(x,col=c(red,green,blue,magenta,yellow,cyan) )
 ```
+
 ## 5.17
 
 ```{r}

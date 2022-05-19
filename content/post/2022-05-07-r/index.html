@@ -18,6 +18,59 @@ tags: []
 <pre class="r"><code>knitr::opts_chunk$set(echo = T,collapse = T,
                       results = &quot;hide&quot;)</code></pre>
 <div id="section" class="section level2">
+<h2>5.19</h2>
+<ul>
+<li>点
+关于点的设置，我们既可以在很多作图函数中用 <code>pch</code>（点的符号）， 等参数实现，也可以在用低层函数 <code>points()</code> 向已有图形中添加点来实现</li>
+</ul>
+<pre class="r"><code>demo(&quot;pointTypes&quot;, package = &quot;MSG&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<pre class="r"><code># 先将鸢尾花的类型转化为整数 1、2、3，便于使用向量
+idx &lt;- as.integer(iris[[&quot;Species&quot;]])
+plot(iris[, 3:4],
+  pch = c(24, 21, 25)[idx],
+  col = c(&quot;black&quot;, &quot;red&quot;, &quot;blue&quot;)[idx], panel.first = grid()
+)
+legend(&quot;topleft&quot;,
+  legend = levels(iris[[&quot;Species&quot;]]),
+  col = c(&quot;black&quot;, &quot;red&quot;, &quot;blue&quot;), pch = c(24, 21, 25), bty = &quot;n&quot;
+)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<pre class="r"><code>par(mar = c(0.2, 0.2, 0.2, 0.2), mfrow = c(2, 2))
+for (n in c(63, 60, 76, 74)) {
+  set.seed(711)
+  plot.new()
+  box()
+  size &lt;- c(replicate(n, 1 / rbeta(2, 1.5, 4)))
+  center &lt;- t(replicate(n, runif(2)))[rep(1:n, each = 2), ]
+  color &lt;- paste(&quot;#&quot;, apply(
+    replicate(2 * n, sample(c(0:9, LETTERS[1:6]), 8, TRUE)), 2, paste,
+    collapse = &quot;&quot;
+  ), sep = &quot;&quot;)
+  points(center, cex = size, pch = rep(20:21, n), col = color)
+}</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" />
+- 曲线、直线、线段、箭头、X-样条</p>
+<p>画线的函数：</p>
+<ol style="list-style-type: decimal">
+<li>abline(a = NULL, b = NULL, h = NULL, v = NULL, reg = NULL, coef = NULL,untf = FALSE, …)</li>
+<li>segments(x0, y0, x1 = x0, y1 = y0, col = par(“fg”), lty = par(“lty”),lwd = par(“lwd”), …)</li>
+<li>arrows(x0, y0, x1 = x0, y1 = y0, length = 0.25, angle = 30, code = 2, col = par(“fg”), lty = par(“lty”), lwd = par(“lwd”), …)</li>
+<li>xspline(x, y = NULL, shape = 0, open = TRUE, repEnds = TRUE, draw = TRUE,border = par(“fg”), col = NA, …)</li>
+</ol>
+<pre class="r"><code># 不作图，只画出框架，且指定坐标轴范围
+plot(1:10, type = &quot;n&quot;, xlim = c(0, 10), ylim = c(0, 10))
+lines(1:10, abs(rnorm(10))) # 10 个正态随机数绝对值的波动线
+abline(a = 0, b = 1, col = &quot;gray&quot;) # 不同的直线
+abline(v = 2, h = 2, lty = 2)
+text(8, 3, &quot;abline(a = 0, b = 1)&quot;) # 添加文本
+arrows(8, 3.5, 6, 5.7, angle = 40) # 添加箭头
+# 参数用了向量：不同灰度的线段
+segments(rep(3, 4), 6:9, rep(5, 4), 6:9, col = gray(seq(0.2, 0.8, length = 4)))
+text(4, 9.8, &quot;segments&quot;)</code></pre>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+</div>
+<div id="section-1" class="section level2">
 <h2>5.18</h2>
 <ul>
 <li>今天研究一下颜色！</li>
@@ -45,7 +98,7 @@ palette(&quot;default&quot;) # 恢复默认调色板
 # 3: HCL 色彩模型,色调（Hue）、色度（Chroma）和亮度（Luminance）
 # 4: 灰色生成模型
 barplot(rep(1,5),col = gray(seq(0, 1, length = 5)))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
 <pre class="r"><code># 两种颜色转换函数rgb2hsv()与col2rgb
 col2rgb(&quot;yellow&quot;) # 黄色是由红绿混合得到的</code></pre>
 <ol start="3" style="list-style-type: decimal">
@@ -57,7 +110,7 @@ par(mar = c(0, 4, 0, 0))
 display.brewer.all(type = &quot;seq&quot;) # 连续型：18 种
 display.brewer.all(type = &quot;div&quot;) # 极端化：9 种
 display.brewer.all(type = &quot;qual&quot;) # 离散型：8 种</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-7-1.png" width="672" /></p>
 <pre class="r"><code>xx &lt;- c(1912, 1912:1971, 1971)
 yy &lt;- c(min(nhtemp), nhtemp, min(nhtemp))
 plot(xx, yy, type = &quot;n&quot;, xlab = &quot;Year&quot;, ylab = &quot;Temperatures&quot;)#无图
@@ -68,12 +121,12 @@ for (i in seq(255, 0, -3)) {
   # 读者可以在这里加上 Sys.sleep(0.05) 以便看清作图过程
 }
 box() # 补齐边框</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-4-1.png" width="672" />
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-8-1.png" width="672" />
 4. 颜色混合</p>
 <pre class="r"><code>#out = alpha * new + (1 - alpha) * old
 x &lt;- rgb(1, seq(0, 1, length = 30), 0)
 barplot(rep(1, 30), col = x)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-1.png" width="672" /></p>
 <pre class="r"><code># 三原色
 x = rep(1,6)
 names(x) = c(&quot;red&quot;,&quot;green&quot;,&quot;blue&quot;,&quot;magenta&quot;,&quot;yellow&quot;,&quot;cyan&quot;)
@@ -84,8 +137,10 @@ magenta = rgb(1,0,1,1)
 yellow = rgb(1,1,0)
 cyan = rgb(0,1,1)
 barplot(x,col=c(red,green,blue,magenta,yellow,cyan) )</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-5-2.png" width="672" />
-## 5.17</p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-9-2.png" width="672" /></p>
+</div>
+<div id="section-2" class="section level2">
+<h2>5.17</h2>
 <pre class="r"><code>troops &lt;- read.table(system.file(&quot;extdata&quot;, &quot;troops.txt&quot;, package = &quot;MSG&quot;), header = TRUE)
 cities &lt;- read.table(system.file(&quot;extdata&quot;, &quot;cities.txt&quot;, package = &quot;MSG&quot;), header = TRUE)
 library(ggplot2)
@@ -99,7 +154,7 @@ p &lt;- p + scale_colour_manual(values = c(&quot;grey50&quot;, &quot;red&quot;))
   theme(legend.position = &quot;none&quot;) + 
   xlim(24, 39) # 细节调整工作
 print(p) # 打印全图</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-6-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-10-1.png" width="672" /></p>
 <ul>
 <li>R 的编程方式是面向对象（Object-Oriented）的</li>
 <li>向量：</li>
@@ -158,14 +213,14 @@ kurtosis(runif(100))
 head(methods(&quot;plot&quot;), 24) # 显示前24个
 class(iris)
 plot(iris) # 调用 plot.data.frame() 作散点图矩阵</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-1.png" width="672" /></p>
 <pre class="r"><code>x &lt;- density(faithful$waiting)
 class(x)
 par(mar = c(4, 4, 3, 0.5))
 plot(x) # 调用 plot.density() 作密度曲线</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-15-2.png" width="672" /></p>
 </div>
-<div id="section-1" class="section level2">
+<div id="section-3" class="section level2">
 <h2>5.16</h2>
 <p>💞💞💞听大佬讲座！ <a href="https://connect.xjtlu.edu.cn/interaction/forum/topic.php?id=1132">大佬讲座ppt链接</a></p>
 <pre><code>library(animation)
@@ -177,9 +232,9 @@ for (i in 1:30){
 <pre class="r"><code>for (i in 1:20){
     hist(rnorm(20))
 }</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-12-.gif" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-16-.gif" width="672" /></p>
 </div>
-<div id="section-2" class="section level2">
+<div id="section-4" class="section level2">
 <h2>5.14</h2>
 <p>吃的太饱容易犯困😵</p>
 <ul>
@@ -194,21 +249,21 @@ counts &lt;- table(Arthritis$Improved)
 counts
 # simple bar plot
 barplot(counts, main = &quot;Simple Bar Plot&quot;, xlab = &quot;Improvement&quot;, ylab = &quot;Frequency&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-1.png" width="672" /></p>
 <pre class="r"><code>
 # horizontal bar plot
 barplot(counts, main = &quot;Horizontal Bar Plot&quot;, xlab = &quot;Frequency&quot;, ylab = &quot;Improvement&quot;, horiz = TRUE)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-2.png" width="672" /></p>
 <pre class="r"><code># get counts for Improved by Treatment table
 counts &lt;- table(Arthritis$Improved,Arthritis$Treatment)
 counts
 # stacked barplot
 barplot(counts, main = &quot;Stacked Bar Plot&quot;, xlab = &quot;Treatment&quot;, ylab = &quot;Frequency&quot;, col = c(&quot;red&quot;, &quot;yellow&quot;, &quot;green&quot;), legend = rownames(counts))</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-3.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-3.png" width="672" /></p>
 <pre class="r"><code>
 # grouped barplot
 barplot(counts, main = &quot;Grouped Bar Plot&quot;, xlab = &quot;Treatment&quot;, ylab = &quot;Frequency&quot;, col = c(&quot;red&quot;, &quot;yellow&quot;, &quot;green&quot;), legend = rownames(counts), beside = TRUE)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-4.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-4.png" width="672" /></p>
 <pre class="r"><code># Mean bar plots
 states &lt;- data.frame(state.region, state.x77)
 means &lt;- aggregate(states$Illiteracy, 
@@ -219,15 +274,15 @@ means &lt;- means[order(means$x), ]
 means
 barplot(means$x, names.arg = means$Group.1)
 title(&quot;Mean Illiteracy Rate&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-5.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-5.png" width="672" /></p>
 <pre class="r"><code>#为棘状图（spinogram）
 attach(Arthritis) 
 counts &lt;- table(Treatment, Improved) 
 spine(counts, main=&quot;Spinogram Example&quot;) </code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-13-6.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-17-6.png" width="672" /></p>
 <pre class="r"><code>detach(Arthritis) </code></pre>
 </div>
-<div id="section-3" class="section level2">
+<div id="section-5" class="section level2">
 <h2>5.13</h2>
 <p>睡得好是真的很重要呀</p>
 <pre class="r"><code>options(digits=2)#)限定了输出小数点后数字位数
@@ -301,7 +356,7 @@ mydate(&quot;medium&quot;)</code></pre>
 <li>包reshape2 <code>数melt()和dcast()</code></li>
 </ul>
 </div>
-<div id="section-4" class="section level2">
+<div id="section-6" class="section level2">
 <h2>5.12</h2>
 <p>昨晚是被蚊子毁掉的睡眠！</p>
 <pre class="r"><code>x &lt;- c(1, 2, 3, 4, 5, 6, 7, 8)
@@ -327,7 +382,7 @@ head(mydata, n=10)   </code></pre>
 <li>R中提供了一个<code>apply()</code>函数，可将一个任意函数“应用”到矩阵、数组、数据框的任何维 度上。<code>apply()</code>函数的使用格式为： <code>apply(x, MARGIN, FUN, ...)</code></li>
 </ul>
 </div>
-<div id="section-5" class="section level2">
+<div id="section-7" class="section level2">
 <h2>5.11</h2>
 <p>答辩让我好疲惫。。</p>
 <ul>
@@ -367,7 +422,7 @@ newdf &lt;- sqldf(&quot;select * from mtcars where carb=1 order by mpg&quot;,
 newdf &lt;- sqldf(&quot;select avg(mpg) as avg_mpg, avg(disp) as avg_disp,
     gear from mtcars where cyl in (4, 6) group by gear&quot;)</code></pre>
 </div>
-<div id="section-6" class="section level2">
+<div id="section-8" class="section level2">
 <h2>5.10</h2>
 <pre class="r"><code>mydata &lt;- data.frame(x1 = c(2, 2, 6, 4), x2 = c(3, 4, 2, 8))
 mydata$sumx &lt;- mydata$x1 + mydata$x2
@@ -388,7 +443,7 @@ print(sum(x, na.rm=TRUE))</code></pre>
 <li><code>na.omit()</code>可以删除所有含有缺失数据的行</li>
 </ul>
 </div>
-<div id="section-7" class="section level2">
+<div id="section-9" class="section level2">
 <h2>5.9</h2>
 <pre class="r"><code>attach(mtcars)
 ## The following object is masked from package:ggplot2:
@@ -397,7 +452,7 @@ print(sum(x, na.rm=TRUE))</code></pre>
 plot(wt, mpg)
 abline(lm(mpg ~ wt))
 title(&quot;Regression of MPG on Weight&quot;)</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-24-1.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="672" /></p>
 <pre class="r"><code>detach(mtcars)</code></pre>
 <ul>
 <li>可用<code>par(optionname=value,optionname=name,...)</code>修改图形参数，也可用高级绘图函数直接提供的optionname=value的键值对</li>
@@ -406,7 +461,7 @@ title(&quot;Regression of MPG on Weight&quot;)</code></pre>
 <li><code>layout()</code>👍</li>
 </ul>
 </div>
-<div id="section-8" class="section level2">
+<div id="section-10" class="section level2">
 <h2>5.8</h2>
 <pre class="r"><code>#矩阵
 y = matrix(1:20,nrow = 5, ncol = 4)
@@ -453,7 +508,7 @@ str(patientdata)</code></pre>
 <li>edit() 可以修改数据</li>
 </ul>
 </div>
-<div id="section-9" class="section level2">
+<div id="section-11" class="section level2">
 <h2>5.7</h2>
 <pre class="r"><code>help.start()
 ## starting httpd help server ... done
@@ -462,6 +517,6 @@ library(vcd)
 help(Arthritis) #阅读数据集Arthritis的描述
 Arthritis 
 example(Arthritis)# 运行数据集Arthritis自带的示例</code></pre>
-<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-28-2.png" width="672" /></p>
+<p><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-1.png" width="672" /><img src="{{< blogdown/postref >}}index_files/figure-html/unnamed-chunk-32-2.png" width="672" /></p>
 <pre class="r"><code>#q()</code></pre>
 </div>

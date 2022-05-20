@@ -19,6 +19,47 @@ knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
 
+## 5.20
+
+- 矩形、多边形
+```{r}
+x <- rnorm(40) # 产生 40 个正态随机数
+plot(x, xlab = "", type = "l") # 画线图
+# 请思考为什么坐标值要这样设置：多边形的连线路径
+polygon(c(1, 1:40, 40), c(0, x, 0), col = "gray")
+xy <- par("usr") # 获取当前图形区域坐标范围，以便下用
+# 用白色矩形挡住了 0 以下的部分
+rect(xy[1], xy[3], xy[2], 0, col = "white")
+lines(x) # 重画一遍 x 的线条
+abline(h = 0, col = "lightgray") # 添加水平线
+```
+
+- 网格线、文本、图例
+```{r}
+par(mar = c(4, 4, 4, 3))
+plot(0:10, type = "n", xlab = "", ylab = "", xlim = c(0, 12))
+grid(col = "gray")
+title(
+  main = "Demonstration of text in R Graphics",
+  xlab = "X-axis title", ylab = "Y-axis title"
+)
+mtext("Here is \"side = 4\"", side = 4, line = 1)
+x <- c(6, 4, 6, 8)
+y <- c(8, 5, 2, 5)
+s <- c(0, 90, 180, 270)
+for (i in 1:4) {
+  text(x[i], y[i], sprintf("srt = %d", s[i]), srt = s[i])
+}
+segments(c(6, 0, 6, 12), c(10, 5, 0, 5), c(0, 6, 12, 6),
+  c(5, 0, 5, 10),
+  lty = c(2, 1, 1, 2)
+)
+legend(-0.2, 9.8, c("Upper", "Lower"),
+  lty = 2:1, cex = 0.8,
+  bty = "n" 
+)
+```
+
 ## 5.19
 - 点
 关于点的设置，我们既可以在很多作图函数中用 `pch`（点的符号）， 等参数实现，也可以在用低层函数 `points()` 向已有图形中添加点来实现

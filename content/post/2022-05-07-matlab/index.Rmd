@@ -12,6 +12,15 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.20
+
+- 调用函数
+`openExample('matlab/CallingFunctionsGSExample')`
+
+- 二维图和三维图
+`openExample('matlab/GS2DAnd3DPlotsExample')`
+
+
 ## 5.19
 看看官方文档咯！
 

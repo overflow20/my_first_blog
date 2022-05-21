@@ -12,6 +12,13 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.21
+
+- 数组类型
+MATLAB 中的元胞数组是以其他数组的副本为元素的多维数组。
+结构体。
+
+
 ## 5.20
 
 - 调用函数

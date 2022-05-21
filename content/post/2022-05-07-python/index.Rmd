@@ -11,6 +11,8 @@ tags: []
 
 - [利用 Python 进行数据分析 · 第 2 版](https://www.bookstack.cn/read/pyda-2e-zh/README.md),第3版已于2022年更新，[第3版网址](https://wesmckinney.com/book/)
 
+## 5.21
+- `pivot`
 
 ## 5.20
 爱老爸！

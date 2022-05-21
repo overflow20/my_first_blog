@@ -19,6 +19,42 @@ knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
 
+## 5.21
+- 瀑布图
+```{r}
+# 七天之内的唯一访问次数数据（周一为 2010 年 8 月 2 日）
+auv <- c(939, 1005, 973, 910, 875, 658, 688)
+# 相邻两天作差
+diff(auv)
+par(mar = c(4, 4, .5, .1))
+plot(auv,
+  xlab = "八月第一周",
+  ylab = "绝对唯一访问次数", type = "n",
+  xlim = c(0.5, 7.5),
+  ylim = c(0, max(auv)),
+  xaxt = "n", panel.first = grid()
+)
+axis(1, 1:7, sprintf("周%s", c(
+  "一", "二", "三", "四", "五", "六", "日"
+)))
+rect(1:7 - 0.3, c(0, auv[1:6]), 1:7 + 0.3, auv,
+  col = c(NA, ifelse(diff(auv) < 0, "red", NA))
+)
+
+```
+
+- SGD
+```{r}
+# 本例的目标函数也可以用 R 自身的 optim() 函数来求极小值，它的收敛代码为 0，表示这个计算结果在一定条件下可以收敛（但不代表找到了全局最小值，甚至不代表找到了局部最小值）
+f2 <- function(x) sin(1 / 2 * x[1]^2 - 1 / 4 * x[2]^2 + 3) *
+    cos(2 * x[1] + 1 - exp(x[2]))
+# par 为局部解；value 为目标函数值； convergence 为收敛指示代码
+optim(c(-.9, .9), f2, method = "L-BFGS-B", lower = c(-1, .5), upper = c(1, 2.2))
+```
+```{r}
+demo("gradArrows1", package = "MSG")
+```
+
 ## 5.20
 
 - 矩形、多边形

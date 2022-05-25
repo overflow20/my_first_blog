@@ -19,6 +19,78 @@ knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
 
+## 5.25
+- bootstrap方法
+```{r}
+x=c(18.2,9.5,12.0,21.1,10.2)
+theta<-median(x)
+bootstrap<-function(x,B=10000){
+        set.seed(123)
+        G<-matrix(0,B,length(x))
+        for(i in 1:B){
+                G[i,]<-t(matrix(sample(x,length(x),replace = T)))
+        }
+        return(G)
+}
+#运行时间
+tic<-proc.time()
+b<-matrix(apply(bootstrap(x),1,median),1)
+toc<-proc.time()
+print(toc-tic)
+#误差计算
+(sd<-sqrt(((b)-mean(b))%*%(t(b)-mean(b))/(length(b)-1)))
+(mean(b))
+```
+- 茎叶图（Stem-and-Leaf Plot）
+```{r}
+head(islands, 10)#该数据记录了世界上各大陆地块的面积大小，原始数据前 10 条如下（单位：千平方英里）
+stem(islands)
+# 均值 lambda 为 10 的泊松分布随机数
+sort(x <- rpois(80, lambda = 10))
+stem(x, scale = 2)
+```
+
+
+## 5.23
+peer pressure
+
+- 直方图（Histogram）
+```{r}
+par(mfrow = c(2, 2), mar = c(2, 3, 2, .5), mgp = c(2, .5, 0))
+data(geyser, package = "MASS")
+hist(geyser$waiting, main = "(1) freq = TRUE", xlab = "waiting")
+hist(geyser$waiting, freq = FALSE, xlab = "waiting", main = "(2) freq = FALSE")
+hist(geyser$waiting, breaks = 5, density = 10, xlab = "waiting", main = "(3) breaks = 5")
+hist(geyser$waiting, breaks = 40, col = "red", xlab = "waiting", main = "(4) breaks = 40")
+
+library(ggplot2)
+library(cowplot)
+p <- ggplot(aes(waiting), data = geyser)
+p1 <- p + geom_histogram(breaks = seq(40, 110, by = 5))
+p2 <- p + geom_histogram(breaks = seq(40, 110, by = 5), aes(y = ..density..))
+p3 <- p + geom_histogram(breaks = seq(40, 110, by = 10))
+p4 <- p + geom_histogram(breaks = seq(42, 108, by = 2), fill = "red", color = "black")
+plot_grid(p1, p2, p3, p4, labels = c(
+  "(1) freq = TRUE",
+  "(2) freq = FALSE",
+  "(3) breaks = 5",
+  "(4) breaks = 40"
+), ncol = 2)
+```
+
+```{r}
+demo("hist_geyser", package = "MSG")
+df <- data.frame(
+  x = seq(40, 110, 5), y = 0,
+  xend = seq(40, 110, 5), yend = ht
+)
+p2 + geom_density(fill = "lightgray", color = "black") +
+  geom_segment(aes(x = x, y = y, xend = xend, yend = yend),
+    data = df, lty = 3
+  )
+
+```
+
 ## 5.21
 - 瀑布图
 ```{r}

@@ -19,6 +19,70 @@ knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
 
+## 5.27
+以后以日期为准，不以今天、明天这样含糊的词语
+```{r}
+(x <- margin.table(HairEyeColor, c(1, 2)))
+assocplot(x)
+```
+
+```{r}
+demo("cdplotDemo", package = "MSG")
+
+fail <-  factor(
+  c(2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1,
+    2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1),
+  levels = 2:1, 
+  labels = c("yes", "no")
+)
+temperature = c(53, 57, 58, 63, 66, 67, 67, 67, 68, 69, 70,
+  70, 70, 70, 72, 73, 75, 75, 76, 76, 78, 79, 81
+)
+fail_temperature <- data.frame(fail = fail, temperature = temperature)
+ggplot(fail_temperature, aes(temperature, ..count.., fill = fail)) +
+  geom_density(position = "fill") +
+  geom_point(aes(temperature, c(0.75, 0.25)[as.integer(fail)]),
+    shape = 21, colour = "blue", fill = "yellow") +
+  scale_x_continuous(expand = c(0, 0)) +
+  scale_y_continuous("fail", expand = c(0, 0), breaks = c(0.25, 0.75), 
+    labels = c("no", "yes"),
+    sec.axis = dup_axis(name = NULL, 
+      breaks = seq(0, 1, 0.2), 
+      labels = c(0, "", 0.4, "", 0.8, ""))
+  ) +
+  scale_fill_manual(values = c("red", "lightblue")) +
+  theme_classic() +
+  theme(legend.position = "none")
+```
+## 5.26
+- 箱线图（boxplot）
+```{r}
+boxplot(count ~ spray, data = InsectSprays,
+        col = "lightgray", horizontal = TRUE, pch = 4)
+ggplot(aes(y = count, x = spray), data = InsectSprays) +
+  geom_boxplot(outlier.shape = 4) +
+  coord_flip()
+```
+```{r}
+InsectSprays[sample(nrow(InsectSprays), 10), ]
+```
+
+- 条形图
+```{r}
+library(RColorBrewer) # 用分类调色板
+par(mfrow = c(2, 1), mar = c(3, 2.5, 0.5, 0.1))
+death <- t(VADeaths)[, 5:1]
+barplot(death, col = brewer.pal(4, "Set1"))
+barplot(death,
+  col = brewer.pal(4, "Set1"), beside = TRUE,
+  legend.text = TRUE
+)
+```
+- 散点图
+```{r}
+demo("alphaDemo", package = "MSG")
+```
+
 ## 5.25
 - bootstrap方法
 ```{r}

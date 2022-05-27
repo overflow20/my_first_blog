@@ -12,6 +12,11 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.26
+- 画图
+- `openExample('matlab/CreatingAPlotExample')`
+- `openExample('matlab/PlottingMultipleDataSetsInOneGraphExample')`
+
 ## 5.21
 
 - 数组类型

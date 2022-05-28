@@ -11,6 +11,9 @@ tags: []
 
 - [利用 Python 进行数据分析 · 第 2 版](https://www.bookstack.cn/read/pyda-2e-zh/README.md),第3版已于2022年更新，[第3版网址](https://wesmckinney.com/book/)
 
+## 5.27
+- 10.1 数据分组
+
 ## 5.26
 - 画图
 要改变x轴刻度，最简单的办法是使用`set_xticks`和`set_xticklabels`;

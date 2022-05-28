@@ -12,6 +12,9 @@ tags: []
 - Matlab揭秘
 - [官方文档！](https://ww2.mathworks.cn/help/matlab/getting-started-with-matlab.html)
 
+## 5.28
+matlab 这教程可以啊
+
 ## 5.26
 - 画图
 - `openExample('matlab/CreatingAPlotExample')`

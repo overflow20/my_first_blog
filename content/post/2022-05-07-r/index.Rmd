@@ -18,6 +18,18 @@ tags: []
 knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
+## 5.28
+- 等高线
+- 条件分布
+- 一元函数曲线
+```{r}
+par(par(mar = c(4.5, 4, 0.2, 0.2)), mfrow = c(2, 1))
+chippy <- function(x) sin(cos(x) * exp(-x / 2))
+curve(chippy, -8, 7, n = 2008, xlab = "$x$", ylab = "$\\mathrm{chippy}(x)$")
+curve(sin(x) / x, from = -20, to = 20, n = 200, 
+      xlab = "$t$", ylab = "$\\varphi_{X}(t)$")
+
+```
 
 ## 5.27
 以后以日期为准，不以今天、明天这样含糊的词语
@@ -26,46 +38,9 @@ knitr::opts_chunk$set(echo = T,collapse = T,
 assocplot(x)
 ```
 
-```{r}
-demo("cdplotDemo", package = "MSG")
 
-fail <-  factor(
-  c(2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 2, 1,
-    2, 1, 1, 1, 1, 2, 1, 1, 1, 1, 1),
-  levels = 2:1, 
-  labels = c("yes", "no")
-)
-temperature = c(53, 57, 58, 63, 66, 67, 67, 67, 68, 69, 70,
-  70, 70, 70, 72, 73, 75, 75, 76, 76, 78, 79, 81
-)
-fail_temperature <- data.frame(fail = fail, temperature = temperature)
-ggplot(fail_temperature, aes(temperature, ..count.., fill = fail)) +
-  geom_density(position = "fill") +
-  geom_point(aes(temperature, c(0.75, 0.25)[as.integer(fail)]),
-    shape = 21, colour = "blue", fill = "yellow") +
-  scale_x_continuous(expand = c(0, 0)) +
-  scale_y_continuous("fail", expand = c(0, 0), breaks = c(0.25, 0.75), 
-    labels = c("no", "yes"),
-    sec.axis = dup_axis(name = NULL, 
-      breaks = seq(0, 1, 0.2), 
-      labels = c(0, "", 0.4, "", 0.8, ""))
-  ) +
-  scale_fill_manual(values = c("red", "lightblue")) +
-  theme_classic() +
-  theme(legend.position = "none")
-```
 ## 5.26
 - 箱线图（boxplot）
-```{r}
-boxplot(count ~ spray, data = InsectSprays,
-        col = "lightgray", horizontal = TRUE, pch = 4)
-ggplot(aes(y = count, x = spray), data = InsectSprays) +
-  geom_boxplot(outlier.shape = 4) +
-  coord_flip()
-```
-```{r}
-InsectSprays[sample(nrow(InsectSprays), 10), ]
-```
 
 - 条形图
 ```{r}

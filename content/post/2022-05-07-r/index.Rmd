@@ -19,6 +19,18 @@ knitr::opts_chunk$set(echo = T,collapse = T,
                       results = "hide")
 ```
 
+## 5.31
+```{r}
+example(persp)
+```
+```{r}
+par(mar = c(4, 4, 0.2, 0.2))
+sunflowerplot(iris[, 3:4], col = "gold", seg.col = "gold")
+```
+```{r}
+demo("symbols_all", echo = FALSE, package = "MSG")
+```
+
 ## 5.29
 人世几回伤往事，山形依旧枕寒流。唉
 ```{r}
